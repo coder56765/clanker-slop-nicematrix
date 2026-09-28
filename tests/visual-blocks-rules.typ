@@ -1,5 +1,5 @@
 // Blocks, fills, rules and corners.
-#import "/src/lib.typ": *
+#import "/nicematrix.typ": *
 #set page(width: 16cm, height: auto, margin: 1em)
 #set text(size: 12pt)
 #let ex(title, body) = block(breakable: false, below: 1.2em)[*#title* #h(1fr) #body]

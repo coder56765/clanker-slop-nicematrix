@@ -1,5 +1,5 @@
 // Dotted leaders: examples from the nicematrix manual, in Typst syntax.
-#import "/src/lib.typ": *
+#import "/nicematrix.typ": *
 #set page(width: 16cm, height: auto, margin: 1em)
 #set text(size: 12pt)
 

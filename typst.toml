@@ -1,7 +1,7 @@
 [package]
 name = "clanker-slop-nicematrix"
 version = "0.1.0"
-entrypoint = "src/lib.typ"
+entrypoint = "nicematrix.typ"
 authors = ["akad <https://github.com/coder56765>"]
 license = "MIT"
 description = "Draw matrices with dotted leaders, blocks, rules, fills, paths, braces and sub-matrices, as in LaTeX's nicematrix."

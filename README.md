@@ -44,6 +44,12 @@ leaders `cdots`, `vdots`…, and the markers `cell`, `hline`, `submatrix`,
 `connect`, `pave`… (see the reference below). Outside a `nicemat`, the
 markers fall back to their plain look (dots, the body of a `cell`…).
 
+The whole library is a single file,
+[`nicematrix.typ`](https://github.com/coder56765/clanker-slop-nicematrix/blob/v0.1.0/nicematrix.typ),
+without dependencies. You can also copy it into a project and write
+`#import "nicematrix.typ": *`. Its internal helpers all start with `_`, so
+`import *` only brings in the functions above.
+
 ## A tour
 
 The full documentation is [`documentation.pdf`](https://github.com/coder56765/clanker-slop-nicematrix/blob/v0.1.0/docs/documentation.pdf)
@@ -368,15 +374,20 @@ The same keys are accepted in `nicemat(dots: (..))` for every leader, and by
 ## Development
 
 The source is at <https://github.com/coder56765/clanker-slop-nicematrix>.
-`tests/run.sh` compiles every test. The tests assert the geometry against
-`mat`, the parsing and the leader extremities, and render `tests/out/*.png`
-for visual checks. Build the documentation from the root of the repository
-with `typst compile --root . docs/documentation.typ`.
+The library is the single file `nicematrix.typ`, in sections ordered so that
+every name is defined before it is used (utilities, measuring, markers,
+parsing, layout, drawing, leaders, rules, decorations, paths, groups,
+`nicemat`, setup, named matrices). `tests/run.sh` compiles every test. The
+tests assert the geometry against `mat`, the parsing and the leader
+extremities, and render `tests/out/*.png` for visual checks. Build the
+documentation from the root of the repository with
+`typst compile --root . docs/documentation.typ`.
 
 ## License
 
 The package is released under the MIT license (see [`LICENSE`](LICENSE)).
-The paths and flood fills of `src/pave.typ` are adapted from
+The paths and flood fills (the section "Paths and flood fills" of
+`nicematrix.typ`) are adapted from
 [pavemat](https://github.com/QuadnucYard/pavemat) (MIT, © 2024–2025
 QuadnucYard).
 

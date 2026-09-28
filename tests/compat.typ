@@ -1,13 +1,12 @@
 // `nicemat` must reproduce the geometry of `mat` (in a display equation)
 // for plain matrices.
-#import "/src/lib.typ": *
-#import "/src/metrics.typ": ink
+#import "/nicematrix.typ": *
 
 #set page(width: auto, height: auto, margin: 1em)
 
 #let tol = 0.05pt
 #let check(name, a, b) = context {
-  let (ma, mb) = (ink(math.equation(math.display(a))), ink(math.equation(b)))
+  let (ma, mb) = (_ink(math.equation(math.display(a))), _ink(math.equation(b)))
   let ok = calc.abs(ma.w - mb.w) < tol and calc.abs(ma.a - mb.a) < tol and calc.abs(ma.d - mb.d) < tol
   assert(ok, message: name + ": mat " + repr(ma) + " vs nicemat " + repr(mb))
   [#name: #math.equation(block: false, math.display(a)) vs #math.equation(block: false, b) ✓ \ ]
@@ -33,11 +32,11 @@
 // `show math.mat: nicemat` keeps the geometry.
 #let plain = $mat(1, 2; 3, frac(4, 5))$
 #let before = state("before")
-#context before.update(ink(math.equation(math.display(plain))))
+#context before.update(_ink(math.equation(math.display(plain))))
 #[
   #show math.mat: nicemat
   #context {
-    let after = ink(math.equation(math.display(plain)))
+    let after = _ink(math.equation(math.display(plain)))
     let b = before.get()
     assert(calc.abs(b.w - after.w) < tol and calc.abs(b.a - after.a) < tol, message: "show rule: " + repr(b) + " vs " + repr(after))
     [show rule: #math.equation(block: false, math.display(plain)) ✓]
@@ -57,7 +56,7 @@ $ A = nicemat(1, 2; 3, 4) quad B = mat(1, 2; 3, 4) quad C = nicemat(frac(1, 2), 
 #[
   #show: nicemat-setup
   #let check-inline(name, a, b) = context {
-    let (ma, mb) = (ink(math.equation(a)), ink(math.equation(b)))
+    let (ma, mb) = (_ink(math.equation(a)), _ink(math.equation(b)))
     let ok = calc.abs(ma.w - mb.w) < tol and calc.abs(ma.a - mb.a) < tol and calc.abs(ma.d - mb.d) < tol
     assert(ok, message: name + ": inline mat " + repr(ma) + " vs nicemat " + repr(mb))
     [#name: #a vs #b ✓ \ ]
@@ -75,8 +74,8 @@ $ A = nicemat(1, 2; 3, 4) quad B = mat(1, 2; 3, 4) quad C = nicemat(frac(1, 2), 
     nicemat(foreground: #report("display nested"), nicemat(1, 2; 3, 4), 0; 0, 1) $
   #context {
     let expected = (
-      "display under setup": ink(math.equation(math.display($mat(1, 2; 3, 4)$))),
-      "display nested": ink(math.equation(math.display($mat(mat(1, 2; 3, 4), 0; 0, 1)$))),
+      "display under setup": _ink(math.equation(math.display($mat(1, 2; 3, 4)$))),
+      "display nested": _ink(math.equation(math.display($mat(mat(1, 2; 3, 4), 0; 0, 1)$))),
     )
     let found = query(<compat-display>).map(m => m.value)
     assert.eq(found.len(), 2)
@@ -92,10 +91,10 @@ $ A = nicemat(1, 2; 3, 4) quad B = mat(1, 2; 3, 4) quad C = nicemat(frac(1, 2), 
 // With `mat: true`, every `mat` is drawn by `nicemat`, inline ones included.
 #[
   #let before = state("before-inline")
-  #context before.update(ink(math.equation($mat(1, 2; 3, frac(4, 5))$)))
+  #context before.update(_ink(math.equation($mat(1, 2; 3, frac(4, 5))$)))
   #show: nicemat-setup.with(mat: true)
   #context {
-    let after = ink(math.equation($mat(1, 2; 3, frac(4, 5))$))
+    let after = _ink(math.equation($mat(1, 2; 3, frac(4, 5))$))
     let b = before.get()
     assert(calc.abs(b.w - after.w) < tol and calc.abs(b.a - after.a) < tol and calc.abs(b.d - after.d) < tol,
       message: "inline show rule: " + repr(b) + " vs " + repr(after))

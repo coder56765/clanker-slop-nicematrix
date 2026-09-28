@@ -1,6 +1,6 @@
 // Groups, debug overlay, geometry hooks, small matrices, inline use,
 // nesting, show rule and another math font.
-#import "/src/lib.typ": *
+#import "/nicematrix.typ": *
 #set page(width: 16cm, height: auto, margin: 1em)
 #set text(size: 12pt)
 #let ex(title, body) = block(breakable: false, below: 1.2em)[*#title* #h(1fr) #body]

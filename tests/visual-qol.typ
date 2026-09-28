@@ -1,4 +1,4 @@
-#import "../src/lib.typ": *
+#import "../nicematrix.typ": *
 #set page(width: 16cm, height: auto, margin: 1cm)
 #set text(size: 11pt)
 

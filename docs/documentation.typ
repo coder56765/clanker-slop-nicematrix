@@ -7,7 +7,7 @@
 //
 // Build with `typst compile --root . docs/documentation.typ`.
 
-#import "/src/lib.typ": *
+#import "/nicematrix.typ": *
 
 #let scope = (
   nicemat: nicemat, nicearray: nicearray, nicemat-group: nicemat-group,
