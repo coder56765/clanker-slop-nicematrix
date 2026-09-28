@@ -1,0 +1,710 @@
+{
+ "L358": {
+  "page": 4,
+  "code": "$\\begin{pmatrix}\n\\frac{1}{2} & -\\frac{1}{2} \\\\\n\\frac{1}{3} & \\frac{1}{4} \\\\\n\\end{pmatrix}$"
+ },
+ "L388": {
+  "page": 5,
+  "code": "$\\begin{pNiceMatrix}[cell-space-limits = 1pt]\n\\frac12 & -\\frac12 \\\\\n\\frac13 & \\frac14 \\\\\n\\end{pNiceMatrix}$"
+ },
+ "L411": {
+  "page": 5,
+  "code": "$A = \\begin{pNiceMatrix}[baseline=2]\n\\frac{1}{\\sqrt{1+p^2}} & p & 1-p \\\\\n1 & 1 & 1 \\\\\n1 & p & 1+p\n\\end{pNiceMatrix}$"
+ },
+ "L435": {
+  "page": 5,
+  "code": "\\begin{enumerate}\n\\item an item\n\\smallskip\n\\item \\renewcommand{\\arraystretch}{1.2}\n$\\begin{NiceArray}[t]{lcccccc}\n\\hline\nn   & 0 & 1 & 2 & 3 & 4  & 5 \\\\\nu_n & 1 & 2 & 4 & 8 & 16 & 32 \n\\hline\n\\end{NiceArray}$\n\\end{enumerate}"
+ },
+ "L471": {
+  "page": 6,
+  "code": "\\begin{enumerate}\n\\item an item\n\\smallskip\n\\item \n$\\begin{NiceArray}[t]{lcccccc}\n\\toprule\nn   & 0 & 1 & 2 & 3 & 4  & 5 \\\\\n\\midrule\nu_n & 1 & 2 & 4 & 8 & 16 & 32 \n\\bottomrule\n\\end{NiceArray}$\n\\end{enumerate}"
+ },
+ "L508": {
+  "page": 6,
+  "code": "\\NiceMatrixOptions{cell-space-limits=1pt}\n$A=\\begin{pNiceArray}{cc|cc}[baseline=line-3]\n\\dfrac{1}{A} & \\dfrac{1}{B} & 0 & 0 \\\\\n\\dfrac{1}{C} & \\dfrac{1}{D} & 0 & 0 \\\\\n\\hline\n0 & 0 & A & B \\\\\n0 & 0 & D & D \\\\\n\\end{pNiceArray}$"
+ },
+ "L561": {
+  "page": 7,
+  "code": "$\\begin{bNiceArray}{cw{c}{1cm}c|c}[margin]\n  \\Block{3-3}{A} & & & 0 \\\\\n  & & & \\Vdots \\\\\n  & & & 0 \\\\\n  \\hline\n  0 & \\Cdots& 0 & 0\n\\end{bNiceArray}$"
+ },
+ "L583": {
+  "page": 7,
+  "code": "$\\begin{bNiceArray}{cw{c}{1cm}c|c}[margin]\n  \\Block{3-3}<\\Large>{A} & & & 0 \\\\\n  0 & & & \\Vdots \\\\\n  & & & 0 \\\\\n  \\hline\n  0 & \\Cdots& 0 & 0\n\\end{bNiceArray}$"
+ },
+ "L713": {
+  "page": 8,
+  "code": "\\begin{NiceTabular}{cw{c}{2cm}w{c}{3cm}c}\n  rose & tulip & daisy & dahlia \\\\\n  violet \n    & \\Block[C,draw=red,fill=[RGB]{204,204,255},rounded-corners]{2-2}\n            {\\LARGE Some beautiful flowers} & & marigold \\\\\n  iris & & & lis \\\\\n  arum & periwinkle & forget-me-not &  hyacinth\n\\end{NiceTabular}"
+ },
+ "L755": {
+  "page": 9,
+  "code": "\\begin{NiceTabular}{@{}>{\\bfseries}lr@{}} \\hline\n  \\Block{2-1}{John}    & 12 \\\\\n                       & 13 \\\\ \\hline\n  Steph                &  8 \\\\ \\hline\n  \\Block{3-1}{Sarah}   & 18 \\\\\n                       & 17 \\\\\n                       & 15 \\\\ \\hline\n  Ashley               & 20 \\\\ \\hline\n  Henry                & 14 \\\\ \\hline\n  \\Block{2-1}{Madison} & 15 \\\\\n                       & 19 \\\\ \\hline\n\\end{NiceTabular}"
+ },
+ "L817": {
+  "page": 10,
+  "code": "$\\begin{bNiceArray}{cw{c}{1cm}c|c}[margin]\n  \\Block[r]{3-3}<\\LARGE>{A} & & & 0 \\\\\n  & & & \\Vdots \\\\\n  & & & 0 \\\\\n  \\hline\n  0 & \\Cdots& 0 & 0\n\\end{bNiceArray}$"
+ },
+ "L837": {
+  "page": 10,
+  "code": "\\begin{NiceTabular}{@{}c!{\\qquad}ccc!{\\qquad}ccc@{}}\n\\toprule\n  Rank & \\Block{1-3}{First group} & & & \\Block{1-3}{Second group} \\\\\n       & 1A & 1B & 1C & 2A & 2B & 2C \\\\\n\\midrule\n  1 & 0.657 & 0.913 & 0.733 & 0.830 & 0.387 & 0.893\\\\\n  2 & 0.343 & 0.537 & 0.655 & 0.690 & 0.471 & 0.333\\\\\n  3 & 0.783 & 0.885 & 0.015 & 0.306 & 0.643 & 0.263\\\\\n  4 & 0.161 & 0.708 & 0.386 & 0.257 & 0.074 & 0.336\\\\\n\\bottomrule\n\\end{NiceTabular}"
+ },
+ "L863": {
+  "page": 10,
+  "code": "\\begin{NiceTabular}{@{}c!{\\qquad}ccc!{\\qquad}ccc@{}}\n\\toprule\n  Rank & \\Block[C]{1-3}{First group} & & & \\Block{1-3}{Second group} \\\\\n       & 1A & 1B & 1C & 2A & 2B & 2C \\\\\n\\midrule\n  1 & 0.657 & 0.913 & 0.733 & 0.830 & 0.387 & 0.893\\\\\n  2 & 0.343 & 0.537 & 0.655 & 0.690 & 0.471 & 0.333\\\\\n  3 & 0.783 & 0.885 & 0.015 & 0.306 & 0.643 & 0.263\\\\\n  4 & 0.161 & 0.708 & 0.386 & 0.257 & 0.074 & 0.336\\\\\n\\bottomrule\n\\end{NiceTabular}"
+ },
+ "L898": {
+  "page": 11,
+  "code": "\\begin{NiceTabular}[hvlines]{ccc}\n  one & two two & three three \\\\\n  one & \n  \\Block[p]{*-2}{%\n  \\begin{itemize}[left=0pt]\n  \\item one two three four five \n  \\item two \n  \\item three\n  \\end{itemize}\n  } \\\\\n  one & \\\\\n  one & \\\\\n  one & \\\\\n  one & \\\\\n  one & \\\\\n  one & \\\\\n\\end{NiceTabular}"
+ },
+ "L962": {
+  "page": 12,
+  "code": "\\begin{NiceTabular}{ccc}\n  \\Block[fill=red!10,t,l]{4-2}{two\\\\lines}\n   & & \\Huge Un\\\\\n   & & deux  \\\\\n   & & trois  \\\\\n   & & \\Huge quatre  \\\\\n  text & text \\\\\n\\end{NiceTabular}"
+ },
+ "L975": {
+  "page": 12,
+  "code": "\\begin{NiceTabular}{ccc}\n\\Block[fill=red!10,b,r]{4-2}{two\\\\lines}\n   & & \\Huge Un\\\\\n   & & deux  \\\\\n   & & trois  \\\\\n   & & \\Huge quatre  \\\\\n  text & text \\\\\n\\end{NiceTabular}"
+ },
+ "L987": {
+  "page": 12,
+  "code": "\\begin{NiceTabular}{ccc}\n  \\Block[fill=red!10,T,L]{4-2}{two\\\\lines}\n   & & \\Huge Un\\\\\n   & & deux  \\\\\n   & & trois  \\\\\n   & & \\Huge quatre  \\\\\n  text & text \\\\\n\\end{NiceTabular}"
+ },
+ "L1000": {
+  "page": 12,
+  "code": "\\begin{NiceTabular}{ccc}\n\\Block[fill=red!10,B,R]{4-2}{two\\\\lines}\n   & & \\Huge Un\\\\\n   & & deux  \\\\\n   & & trois  \\\\\n   & & \\Huge quatre  \\\\\n  text & text \\\\\n\\end{NiceTabular}"
+ },
+ "L1051": {
+  "page": 13,
+  "code": "\\begin{NiceTabular}{ll}%\n   [hvlines,ampersand-in-blocks]\n    & the five first naturels numbers \\\\ \n  3 & \\Block{}{one & two & three} \\\\\n  4 & \\Block{}{one& two & three & four} \\\\\n  5 & \\Block{}{one & two & three & four & five} \\\\\n\\end{NiceTabular}"
+ },
+ "L1067": {
+  "page": 13,
+  "code": "\\begin{NiceTabular}{lccccc}%\n   [hvlines,ampersand-in-blocks]\n    & \\Block{1-5}{the five first\n                   natural numbers} \\\\ \n  3 & \\Block{1-5}{one & two & three} \\\\\n  4 & \\Block{1-5}{one& two &\n         \\cellcolor{red!15} three & four} \\\\\n  5 & one & two & three & four & five \\\\\n\\end{NiceTabular}"
+ },
+ "L1102": {
+  "page": 13,
+  "code": "\\begin{NiceTabular}{lr}[hvlines,create-blocks-in-col=1]\n\\rowcolors{blue!10}{}[respect-blocks]\n  John      & 12 \\\\\n            & 13 \\\\\n  Steph     &  8 \\\\\n  Sarach    & 18 \\\\\n            & 17 \\\\\n            & 15 \\\\\n  Ashley    & 20 \\\\\n  Henry     & 14 \\\\\n  Madison   & 15 \\\\\n            & 19\n\\end{NiceTabular}"
+ },
+ "L1145": {
+  "page": 14,
+  "code": "\\begin{NiceTabular}{|c|c|} \\hline\n  First & Second \\\\ \\hline\\hline\n  Peter \\\\ \\hline\n  Mary & George\\\\ \\hline\n\\end{NiceTabular}"
+ },
+ "L1173": {
+  "page": 14,
+  "code": "$\\begin{NiceArray}{c|ccc} \\toprule\n  a & b & c & d \\\\ \\midrule\n  1 & 2 & 3 & 4 \\\\\n  1 & 2 & 3 & 4 \\\\ \\bottomrule\n\\end{NiceArray}$"
+ },
+ "L1187": {
+  "page": 14,
+  "code": "\\newcolumntype{I}{!{\\vrule}}\n\\begin{NiceTabular}{IcIcI} \\hline\n  First & Second \\\\ \\hline\\hline\n  Peter & \\\\ \\hline\n  Mary  & George\\\\ \\hline\nPremier & Deuxième \\\\ \\hline\\hline\nPaul  & \\\\ \\hline\nMarie & Pauline \\\\ \\hline\n\\end{NiceTabular}"
+ },
+ "L1221": {
+  "page": 15,
+  "code": "\\setlength{\\arrayrulewidth}{2pt}\n\\begin{tabular}{cccc} \\hline\n  A&B&C&D \\\\ \\cline{2-2}\n  A&B&C&D \\\\ \\hline\n\\end{tabular}"
+ },
+ "L1236": {
+  "page": 15,
+  "code": "\\setlength{\\arrayrulewidth}{2pt}\n\\begin{NiceTabular}{cccc} \\hline\n  A&B&C&D \\\\ \\cline{2}\n  A&B&C&D \\\\ \\hline\n\\end{NiceTabular}"
+ },
+ "L1275": {
+  "page": 15,
+  "code": "\\begin{NiceTabular}{|ccc|}{[rules/color=[gray]{0.9},rules/width=1pt]}\n\\hline\n  rose & tulipe & lys \\\\\n  arum & iris & violette \\\\\n  muguet & dahlia & souci \\\\\n\\hline\n\\end{NiceTabular}"
+ },
+ "L1343": {
+  "page": 16,
+  "code": "\\begin{NiceTabular}{ | c |[color=blue] c |}\n\\Hline\na & b \\\\\n\\Hline[color=red]\nc & d \\\\\n\\Hline\n\\end{NiceTabular}"
+ },
+ "L1380": {
+  "page": 16,
+  "code": "$\\begin{pNiceMatrix}[vlines,rules/width=0.2pt]\n  1 & 2 & 3 & 4 & 5 & 6 \\\\\n  1 & 2 & 3 & 4 & 5 & 6 \\\\\n  1 & 2 & 3 & 4 & 5 & 6 \n\\end{pNiceMatrix}$"
+ },
+ "L1396": {
+  "page": 17,
+  "code": "$\\begin{NiceArray}{c||ccccc}[hlines,vlines]\n    & a & b & c & d & e \\\\ \\Hline\\Hline\n  x & 0 & 0 & 0 & 0 & 0 \\\\\n  y & 0 & 0 & 0 & 0 & 0 \\\\\n  z & 0 & 0 & 0 & 0 & 0 \\\\\n\\end{NiceArray}$"
+ },
+ "L1419": {
+  "page": 17,
+  "code": "\\begin{NiceTabular}{cccc}[hvlines,rules={color=blue,width=1pt}]\n  rose      & tulip & sunflower & lily \\\\\n  violet    & \\Block[C,draw=red]{2-2}{\\LARGE flowers} & & orchid \\\\\n  carnation & & & lys \\\\\n  daisy     & peony & jasmine & magnolia \n\\end{NiceTabular}"
+ },
+ "L1502": {
+  "page": 18,
+  "code": "\\NiceMatrixOptions{cell-space-top-limit=3pt}\n\\begin{NiceTabular}{*{6}{c}}[corners,hvlines]\n    &   &   &   & A \\\\\n    &   & A & A & A \\\\\n    &   &   & A \\\\\n    &   & A & A & A & A \\\\\n  A & A & A & A & A & A \\\\\n  A & A & A & A & A & A \\\\\n    & A & A & A \\\\\n    & \\Block[C]{2-2}{B} & & A \\\\\n    &   &   & A \\\\\n\\end{NiceTabular}"
+ },
+ "L1523": {
+  "page": 18,
+  "code": "\\NiceMatrixOptions{cell-space-top-limit=3pt}\n\\begin{NiceTabular}{*{6}{c}}[corners=NE,hvlines]\n  1\\\\\n  1&1\\\\\n  1&2&1\\\\\n  1&3&3&1\\\\\n  1&4&6&4&1\\\\\n   & & & & &1\n\\end{NiceTabular}"
+ },
+ "L1553": {
+  "page": 18,
+  "code": "\\begin{NiceTabular}{cccc}[hvlines,corners=E]\n1 & 2 \\\\\n1 & 2 & 3 \\\\\n1 & 3 \\\\\n1 \\\\\n1 & 2 & 3 & 4 \\\\\n\\end{NiceTabular}"
+ },
+ "L1573": {
+  "page": 18,
+  "code": "$\\begin{NiceArray}{*{5}{c}}[hvlines]\n  \\diagbox{x}{y}  & e & a & b & c \\\\\n  e & e & a & b & c \\\\\n  a & a & e & c & b \\\\\n  b & b & c & e & a \\\\\n  c & c & b & a & e \n\\end{NiceArray}$"
+ },
+ "L1587": {
+  "page": 19,
+  "code": "$\\begin{NiceArray}{*{5}{c}}[hvlines]\n  \\Block{2-2}{\\diagbox{x}{y}} &  & a & b & c \\\\\n    &   & a & b & c \\\\\n  a & a & e & c & b \\\\\n  b & b & c & e & a \\\\\n  c & c & b & a & e\n\\end{NiceArray}$"
+ },
+ "L1602": {
+  "page": 19,
+  "code": "$\\begin{NiceArray}{*{5}{c}}[hvlines]\n  \\Block{2-2}{\\diagbox{}{}} & y & a & b & c \\\\\n  x &   & a & b & c \\\\\n  a & a & e & c & b \\\\\n  b & b & c & e & a \\\\\n  c & c & b & a & e\n\\end{NiceArray}$"
+ },
+ "L1702": {
+  "page": 20,
+  "code": "\\begin{NiceTabular}{lcIcIc}[custom-line = {letter=I, color=red}]\n\\Hline\n            & \\Block{1-3}{dimensions} \\\\\n            & L & l & h \\\\\n\\Hline\n  Product A & 3 & 1 & 2 \\\\\n  Product B & 1 & 3 & 4 \\\\\n  Product C & 5 & 4 & 1 \\\\\n\\Hline\n\\end{NiceTabular}"
+ },
+ "L1734": {
+  "page": 20,
+  "code": "\\NiceMatrixOptions\n  {\n    custom-line = \n     {\n       command = \\DoubleRule , \n       multiplicity = 2 , \n       sep-color = white\n     }\n  }\n\n\\begin{NiceTabular}{ccc}\n  one & two & three \\\\\n\\DoubleRule\n  four & \\cellcolor{yellow} five & six \\\\\n\\end{NiceTabular}"
+ },
+ "L1793": {
+  "page": 21,
+  "code": "$\\begin{pNiceMatrix}\n1 & 2 & 3 & 4 & 5 \\\\\n\\hdashedline\n6 & 7 & 8 & 9 & 10 \\\\\n\\cdashedline{1,4-5}\n11 & 12 & 13 & 14 & 15\n\\end{pNiceMatrix}$"
+ },
+ "L1808": {
+  "page": 21,
+  "code": "$\\begin{pNiceArray}{cccc;c}\n1 & 2 & 3 & 4 & 5 \\\\\n6 & 7 & 8 & 9 & 10 \\\\\n11 & 12 & 13 & 14 & 15\n\\end{pNiceArray}$"
+ },
+ "L1822": {
+  "page": 21,
+  "code": "\\NiceMatrixOptions\n  {\n    custom-line =\n     {\n       command = \\myhdashedline ,\n       ccommand = \\mycdashedline ,\n       dashed,\n       total-width = 10 pt\n     }\n  }"
+ },
+ "L1849": {
+  "page": 21,
+  "code": "$\\begin{pNiceMatrix}\n1 & 2 & 3 & 4 & 5 \\\\\n\\myhdashedline\n6 & 7 & 8 & 9 & 10 \\\\\n\\mycdashedline{1,4-5}\n11 & 12 & 13 & 14 & 15\n\\end{pNiceMatrix}$"
+ },
+ "L1884": {
+  "page": 22,
+  "code": "$\\begin{pNiceMatrix}\n1 & 2 & 3 & 4 & 5 \\\\\n\\hdottedline\n6 & 7 & 8 & 9 & 10 \\\\\n\\cdottedline{1,4-5}\n11 & 12 & 13 & 14 & 15\n\\end{pNiceMatrix}$"
+ },
+ "L1901": {
+  "page": 22,
+  "code": "$\\begin{pNiceArray}{cccc:c}\n1 & 2 & 3 & 4 & 5 \\\\\n6 & 7 & 8 & 9 & 10 \\\\\n11 & 12 & 13 & 14 & 15\n\\end{pNiceArray}$"
+ },
+ "L1940": {
+  "page": 22,
+  "code": "\\NiceMatrixOptions\n  {\n    custom-line = \n     {\n       letter = I , \n       tikz = { decorate, decoration = zigzag } ,\n       total-width = 6 pt\n     }\n  }\n\n\\begin{NiceTabular}{cIcIc}\n  one & two & three \\\\\n  four & five & six \\\\\n  seven & eight & nine\n\\end{NiceTabular}"
+ },
+ "L1987": {
+  "page": 23,
+  "code": "\\begin{NiceTabular}{cc|[color=blue,start=2]ccc}\n  one & two & three & four \n\\Hline[start=2,end=3]\n  five & six & seven & eight \\\\\n  nine & ten & eleven & twelve \n\\end{NiceTabular}"
+ },
+ "L2022": {
+  "page": 23,
+  "code": "\\NiceMatrixOptions\n  {\n    custom-line =\n     {\n       command = \\RandomLine ,\n       tikz =\n         {\n           decorate ,\n           decoration = { random steps, segment length = 5pt, amplitude = 3pt } \n         }\n     }\n  }"
+ },
+ "L2057": {
+  "page": 23,
+  "code": "\\begin{NiceTabular}{ccc}[vlines]\n\\Hline\n  Name & First name & Age \\\\\n\\Hline\n  Dubourg & Claude & 88 \\\\\n  Challa & Remy & 72 \\\\\n  Ducar & Estelle & 75 \\\\\n  Migaud & Sophie & 18 \\\\[1mm]\n\\RandomLine\n\\end{NiceTabular}"
+ },
+ "L2080": {
+  "page": 23,
+  "code": "\\begin{NiceTabular}{ccc}[vlines,rules/fix-vertex]\n\\Hline\n  Name & First name & Age \\\\\n\\Hline\n  Dubourg & Claude & 88 \\\\\n  Challa & Remy & 72 \\\\\n  Ducar & Estelle & 75 \\\\\n  Migaud & Sophie & 18 \\\\[1mm]\n\\RandomLine\n\\end{NiceTabular}"
+ },
+ "L2121": {
+  "page": 24,
+  "code": "\\NiceMatrixOptions\n  {\n    default-line =\n      {\n        tikz =\n          {\n            decorate ,\n            decoration = { random steps, segment length = 3pt, amplitude = 1pt }\n          }\n      }\n  }"
+ },
+ "L2152": {
+  "page": 24,
+  "code": "\\renewcommand{\\arraystretch}{1.3}\n\\begin{NiceTabular}{ccc}[hvlines,rules/fix-vertex]\n  one   & two  & three \\\\\n  four  & five & six \\\\\n  seven & \\Block{1-2}{eight} \\\\\n\\end{NiceTabular}"
+ },
+ "L2191": {
+  "page": 24,
+  "code": "\\begin{NiceTabular}{cFcc}[hvlines]\n\\CodeBefore\n  \\rowcolor[opacity=0.5]{red!50}{3}\n  \\columncolor[opacity=0.5]{blue!50}{3}\n\\Body\n\\diagbox{x}{y} && a & b \\\\\n\\FalseRow\n\na              && b & a \\\\\nb              && a & b\n\\end{NiceTabular}"
+ },
+ "L2283": {
+  "page": 25,
+  "code": "\\begin{pNiceArray}{\\textsl{preamble}}\n\\CodeBefore [\\textsl{options}]\n  \\textsl{instructions of the code-before}\n\\Body\n  \\textsl{contents of the environment}\n\\end{pNiceArray}"
+ },
+ "L2365": {
+  "page": 26,
+  "code": "\\begin{NiceTabular}{ccc}[hvlines]\n\\CodeBefore\n  \\cellcolor[HTML]{FFFF88}{3-1,2-2,-3}\n\\Body\n  a & b & c \\\\ \n  e & f & g \\\\ \n  h & i & j \\\\ \n\\end{NiceTabular}"
+ },
+ "L2382": {
+  "page": 26,
+  "code": "\\begin{NiceTabular}{ccc}[hvlines]\n\\CodeBefore\n  \\rectanglecolor{blue!15}{2-2}{3-3}\n\\Body\n  a & b & c \\\\ \n  e & f & g \\\\ \n  h & i & j \\\\ \n\\end{NiceTabular}"
+ },
+ "L2407": {
+  "page": 26,
+  "code": "$\\begin{pNiceMatrix}[r,margin] \n\\CodeBefore\n  \\chessboardcolors{red!15}{blue!15}\n\\Body\n  1  & -1 & 1 \\\\\n  -1 & 1  & -1 \\\\\n  1  & -1 & 1 \n\\end{pNiceMatrix}$"
+ },
+ "L2431": {
+  "page": 27,
+  "code": "$\\begin{NiceArray}{lll}[hvlines] \n\\CodeBefore\n  \\rowcolor{red!15}{1,3-5,8-}\n\\Body\n  a_1 & b_1 & c_1 \\\\\n  a_2 & b_2 & c_2 \\\\\n  a_3 & b_3 & c_3 \\\\\n  a_4 & b_4 & c_4 \\\\\n  a_5 & b_5 & c_5 \\\\\n  a_6 & b_6 & c_6 \\\\\n  a_7 & b_7 & c_7 \\\\\n  a_8 & b_8 & c_8 \\\\\n  a_9 & b_9 & c_9 \\\\\n  a_{10} & b_{10} & c_{10} \\\\\n\\end{NiceArray}$"
+ },
+ "L2494": {
+  "page": 28,
+  "code": "\\begin{NiceTabular}{clr}[hvlines]\n\\CodeBefore\n  \\rowcolors[gray]{2}{0.8}{}[cols=2-3,restart]\n\\Body\n  \\Block{1-*}{Résultats} \\\\\n  \\Block{2-1}{A}& Pierre & 12 \\\\\n                & Jacques & 8 \\\\\n  \\Block{4-1}{B}& Stéphanie & 18 \\\\\n                & Amélie & 20 \\\\\n                & Henri & 14 \\\\\n                & Estelle & 15\n\\end{NiceTabular}"
+ },
+ "L2517": {
+  "page": 28,
+  "code": "\\begin{NiceTabular}{c}[rounded-corners]\n\\CodeBefore\n  \\rowlistcolors{1}{red!15,blue!15,green!15}\n\\Body\n  Peter \\\\\n  James \\\\\n  Abigail \\\\\n  Elisabeth \\\\\n  Claudius \\\\\n  Jane \\\\\n  Alexandra \\\\\n\\end{NiceTabular}"
+ },
+ "L2546": {
+  "page": 28,
+  "code": "\\begin{NiceTabular}{c}\n\\CodeBefore\n  \\definecolorseries{BlueWhite}{rgb}{last}{blue}{white}\n  \\resetcolorseries[\\value{iRow}]{BlueWhite}\n  \\rowlistcolors{1}{BlueWhite!!+}\n\\Body\n  Peter \\\\\n  James \\\\\n  Abigail \\\\\n  Elisabeth \\\\\n  Claudius \\\\\n  Jane \\\\\n  Alexandra \\\\\n\\end{NiceTabular}"
+ },
+ "L2571": {
+  "page": 29,
+  "code": "\\begin{NiceTabular}{ccccccc}{[corners=E,margin,hvlines,first-row,first-col]}\n\\CodeBefore\n  \\rowlistcolors{1}{blue!15, }\n\\Body\n    & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\\\\n  0 & 1 \\\\\n  1 & 1 & 1 \\\\\n  2 & 1 & 2 & 1 \\\\\n  3 & 1 & 3 & 3 & 1 \\\\\n  4 & 1 & 4 & 6 & 4 & 1 \\\\\n  5 & 1 & 5 & 10 & 10 & 5 & 1 \\\\\n  6 & 1 & 6 & 15 & 20 & 15 & 6 & 1 \\\\\n\\end{NiceTabular}"
+ },
+ "L2602": {
+  "page": 29,
+  "code": "\\begin{NiceTabular}{ccccccc}{[corners=E,margin,hvlines,first-row,first-col]}\n\\CodeBefore\n  \\rowlistcolors{1}{blue!15, }\n  \\columncolor{red!15}{0}\n\\Body\n    & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\\\\n  0 & 1 \\\\\n  1 & 1 & 1 \\\\\n  2 & 1 & 2 & 1 \\\\\n  3 & 1 & 3 & 3 & 1 \\\\\n  4 & 1 & 4 & 6 & 4 & 1 \\\\\n  5 & 1 & 5 & 10 & 10 & 5 & 1 \\\\\n  6 & 1 & 6 & 15 & 20 & 15 & 6 & 1 \\\\\n\\end{NiceTabular}"
+ },
+ "L2626": {
+  "page": 30,
+  "code": "\\begin{NiceTabular}[c]{lSSSS}[no-cell-nodes] {% no-cell-nodes is optional}\n\\CodeBefore\n  \\rowcolor{red!15}{1-2} \n  \\rowcolors{3}{blue!15}{}\n\\Body\n  \\toprule\n  \\Block[C]{2-1}{Product} & \n  \\Block{1-3}{dimensions (cm)} & & & \n  \\Block{2-1}{\\rotate Price} \\\\\n  \\cmidrule(rl){2-4}\n   & L & l & h \\\\\n  \\midrule\n  small    & 3   & 5.5  & 1   & 30    \\\\\n  standard & 5.5 & 8    & 1.5 & 50.5  \\\\\n  premium  & 8.5 & 10.5 & 2   & 80    \\\\\n  extra    & 8.5 & 10   & 1.5 & 85.5  \\\\\n  special  & 12  & 12   & 0.5 & 70    \\\\\n  \\bottomrule\n\\end{NiceTabular}"
+ },
+ "L2667": {
+  "page": 30,
+  "code": "\\begin{NiceTabular}{ccccc}[hvlines,no-cell-nodes] {% no-cell-nodes is optional}\n\\CodeBefore\n  \\rowcolor{blue!15}{1}\n  \\EmptyColumn{3}\n\\Body\n  one & two && three & four \\\\\n  one & \\Block{}{two\\\\ rows} && three & four \\\\\n\\end{NiceTabular}"
+ },
+ "L2726": {
+  "page": 31,
+  "code": "\\NewDocumentCommand { \\Blue } { } { \\columncolor{blue!15} }\n\\begin{NiceTabular}{>{\\Blue}c>{\\Blue}cc} \n\\toprule\n  \\rowcolor{red!15}\n  Last name & First name & Birth day \\\\\n\\midrule\n  Achard  & Jacques & 5 juin 1962 \\\\\n  Lefebvre & Mathilde & 23 mai 1988 \\\\\n  Vanesse & Stephany & 30 octobre 1994 \\\\\n  Dupont & Chantal & 15 janvier 1998 \\\\\n\\bottomrule\n\\end{NiceTabular}"
+ },
+ "L2752": {
+  "page": 31,
+  "code": "\\begin{NiceTabular}{c}[hvlines]\n  one \\\\\n  two \\\\\n\\rowlistcolors{red!15}\n  three \\\\\n  four \\\\\n  five \\\\\n\\rowlistcolors{}\n  six \\\\\n  seven \\\\\n\\end{NiceTabular}"
+ },
+ "L2770": {
+  "page": 32,
+  "code": "\\begin{NiceTabular}{lr}[hvlines,create-blocks-in-col=1]\n\\rowcolors{blue!10}{}[respect-blocks]\n  John      & 12 \\\\\n            & 13 \\\\\n  Steph     &  8 \\\\\n  Sarach    & 18 \\\\\n            & 17 \\\\\n            & 15 \\\\\n  Ashley    & 20 \\\\\n  Henry     & 14 \\\\\n  Madison   & 15 \\\\\n            & 19\n\\end{NiceTabular}"
+ },
+ "L2857": {
+  "page": 33,
+  "code": "\\begin{NiceTabular}{cccc}\n  \\hline\n  \\RowStyle[cell-space-limits=3pt]{\\rotate}\n  first & second & third & fourth \\\\\n  \\RowStyle[nb-rows=2,fill=blue!50,color=white]{\\sffamily}\n  1 & 2 & 3 & 4 \\\\\n  I & II & III & IV \n\\end{NiceTabular}"
+ },
+ "L2887": {
+  "page": 33,
+  "code": "\\begin{NiceTabular}{W{c}{2cm}cc}[hvlines]\n  Paris  & New York & Madrid \\\\\n  Berlin & London   & Roma   \\\\\n  Rio    & Tokyo    & Oslo \n\\end{NiceTabular}"
+ },
+ "L2903": {
+  "page": 33,
+  "code": "$\\begin{pNiceMatrix}[columns-width = 1cm]\n  1  & 12 & -123 \\\\\n  12 & 0  & 0    \\\\\n  4  & 1  & 2 \n\\end{pNiceMatrix}$"
+ },
+ "L2927": {
+  "page": 33,
+  "code": "$\\begin{pNiceMatrix}[columns-width = auto]\n  1  & 12 & -123 \\\\\n  12 & 0  & 0    \\\\\n  4  & 1  & 2 \n\\end{pNiceMatrix}$"
+ },
+ "L2942": {
+  "page": 34,
+  "code": "\\NiceMatrixOptions{columns-width=10mm}\n$\\begin{pNiceMatrix}\na & b \\\\ c & d \n\\end{pNiceMatrix}\n= \n\\begin{pNiceMatrix}\n1   & 1245 \\\\ 345 & 2 \n\\end{pNiceMatrix}$"
+ },
+ "L2966": {
+  "page": 34,
+  "code": "\\begin{NiceMatrixBlock}[auto-columns-width]\n$\\begin{array}{c}\n\\begin{bNiceMatrix}\n 9 & 17 \\\\ -2 & 5 \n \\end{bNiceMatrix} \\\\ \\\\\n\\begin{bNiceMatrix}\n 1   & 1245345 \\\\  345 & 2 \n\\end{bNiceMatrix} \\\\\n\\end{array}$\n\\end{NiceMatrixBlock}"
+ },
+ "L2997": {
+  "page": 34,
+  "code": "\\fbox{%\n\\begin{varwidth}{8cm}\n\\begin{itemize}\n\\item first item\n\\item second item\n\\end{itemize}\n\\end{varwidth}}"
+ },
+ "L3008": {
+  "page": 34,
+  "code": "\\fbox{%\n\\begin{minipage}{8cm}\n\\begin{itemize}\n\\item first item\n\\item second item\n\\end{itemize}\n\\end{minipage}}"
+ },
+ "L3029": {
+  "page": 35,
+  "code": "\\begin{NiceTabular}[corners=NW,hvlines]{V{3cm}V{3cm}V{3cm}}\n  & some text & some very very very long text \\\\\n  some very very very long text \\\\\n  some very very very long text \n\\end{NiceTabular}"
+ },
+ "L3106": {
+  "page": 36,
+  "code": "\\begin{NiceTabular}[width=9cm]{X[c,m]X[0.5,c,m]}[hvlines]\n  a rather long text which fits on several lines \n  & a rather long text which fits on several lines \\\\\n  a shorter text & a shorter text\n\\end{NiceTabular}"
+ },
+ "L3136": {
+  "page": 36,
+  "code": "$\\begin{pNiceMatrix}[first-row,last-row,first-col,last-col,xdots/nullify]\n       & C_1    & \\Cdots &        & C_4    &        \\\\\nL_1    & a_{11} & a_{12} & a_{13} & a_{14} & L_1    \\\\\n\\Vdots & a_{21} & a_{22} & a_{23} & a_{24} & \\Vdots \\\\\n       & a_{31} & a_{32} & a_{33} & a_{34} &        \\\\\nL_4    & a_{41} & a_{42} & a_{43} & a_{44} & L_4    \\\\\n       & C_1    & \\Cdots &        & C_4    &     \n\\end{pNiceMatrix}$"
+ },
+ "L3205": {
+  "page": 37,
+  "code": "\\NiceMatrixOptions{code-for-first-row = \\color{red},\n                   code-for-first-col = \\color{blue},\n                   code-for-last-row = \\color{green},\n                   code-for-last-col = \\color{magenta}}\n\n$\\begin{pNiceArray}{cc|cc}[first-row,last-row=5,first-col,last-col,xdots/nullify]\n       & C_1    & \\multicolumn1c{\\Cdots} &        & C_4    &        \\\\\nL_1    & a_{11} & a_{12} & a_{13} & a_{14} & L_1    \\\\\n\\Vdots & a_{21} & a_{22} & a_{23} & a_{24} & \\Vdots \\\\\n\\hline\n       & a_{31} & a_{32} & a_{33} & a_{34} &        \\\\\nL_4    & a_{41} & a_{42} & a_{43} & a_{44} & L_4    \\\\\n       & C_1    & \\multicolumn1c{\\Cdots} &        & C_4    &     \n\\end{pNiceArray}$"
+ },
+ "L3285": {
+  "page": 38,
+  "code": "$\\begin{bNiceMatrix}\na_1      & \\Cdots &        & & a_1    \\\\\n\\Vdots   & a_2    & \\Cdots & & a_2    \\\\\n         & \\Vdots & \\Ddots[color=red] \\\\\n\\\\\na_1      & a_2    &        & & a_n \n\\end{bNiceMatrix}$"
+ },
+ "L3300": {
+  "page": 38,
+  "code": "$\\begin{bNiceMatrix}\n0      & \\Cdots & 0      \\\\\n\\Vdots &        & \\Vdots \\\\\n0      & \\Cdots & 0 \n\\end{bNiceMatrix}$"
+ },
+ "L3315": {
+  "page": 38,
+  "code": "$\\begin{bNiceMatrix}\n0      & \\Cdots & \\Cdots & 0      \\\\\n\\Vdots &        &        & \\Vdots \\\\\n\\Vdots &        &        & \\Vdots \\\\\n0      & \\Cdots & \\Cdots & 0 \n\\end{bNiceMatrix}$"
+ },
+ "L3334": {
+  "page": 38,
+  "code": "$\\begin{bNiceMatrix}\n0       & \\Cdots &        & 0      \\\\\n\\Vdots  &        &        &        \\\\\n        &        &        & \\Vdots \\\\\n0       &        & \\Cdots & 0 \n\\end{bNiceMatrix}$"
+ },
+ "L3361": {
+  "page": 39,
+  "code": "$\\begin{bNiceMatrix}\n0      & \\Cdots & \\Hspace*{1cm} & 0      \\\\\n\\Vdots &        &               & \\Vdots \\\\[1cm]\n0      & \\Cdots &               & 0    \n\\end{bNiceMatrix}$"
+ },
+ "L3381": {
+  "page": 39,
+  "code": "$A = \\begin{pmatrix}\nh & i & j & k & l & m \\\\\nx &   &   &   &   & x \n\\end{pmatrix}$"
+ },
+ "L3394": {
+  "page": 39,
+  "code": "$B = \\begin{pmatrix}\nh & i & j & k & l & m \\\\\nx & \\ldots & \\ldots  & \\ldots & \\ldots & x \n\\end{pmatrix}$"
+ },
+ "L3408": {
+  "page": 39,
+  "code": "$C = \\begin{pNiceMatrix}\nh & i & j & k & l & m \\\\\nx & \\Ldots & \\Ldots & \\Ldots & \\Ldots & x \n\\end{pNiceMatrix}$"
+ },
+ "L3424": {
+  "page": 39,
+  "code": "$D = \\begin{pNiceMatrix}[xdots/nullify]\nh & i & j & k & l & m \\\\\nx & \\Ldots & &  &  & x \n\\end{pNiceMatrix}$"
+ },
+ "L3457": {
+  "page": 40,
+  "code": "$\\begin{pNiceMatrix}\n1 & 2 & 3 & 4 & 5 \\\\\n1 & \\Hdotsfor{3} & 5 \\\\\n1 & 2 & 3 & 4 & 5 \\\\\n1 & 2 & 3 & 4 & 5 \n\\end{pNiceMatrix}$"
+ },
+ "L3471": {
+  "page": 40,
+  "code": "$\\begin{pNiceMatrix}\n1 & 2 & 3 & 4 & 5 \\\\\n  & \\Hdotsfor{3} \\\\\n1 & 2 & 3 & 4 & 5 \\\\\n1 & 2 & 3 & 4 & 5 \n\\end{pNiceMatrix}$"
+ },
+ "L3497": {
+  "page": 40,
+  "code": "$\\begin{bNiceMatrix}\nC[a_1,a_1] & \\Cdots & C[a_1,a_n]\n  & \\hspace*{20mm} & C[a_1,a_1^{(p)}] & \\Cdots & C[a_1,a_n^{(p)}] \\\\\n\\Vdots & \\Ddots & \\Vdots\n  & \\Hdotsfor{1} & \\Vdots & \\Ddots & \\Vdots \\\\\nC[a_n,a_1] & \\Cdots & C[a_n,a_n]\n  & & C[a_n,a_1^{(p)}] & \\Cdots & C[a_n,a_n^{(p)}] \\\\\n\\rule{0pt}{15mm}\\NotEmpty  & \\Vdotsfor{1} & & \\Ddots & & \\Vdotsfor{1} \\\\\nC[a_1^{(p)},a_1] & \\Cdots & C[a_1^{(p)},a_n]\n  & & C[a_1^{(p)},a_1^{(p)}] & \\Cdots & C[a_1^{(p)},a_n^{(p)}] \\\\\n\\Vdots & \\Ddots & \\Vdots\n  & \\Hdotsfor{1} & \\Vdots & \\Ddots & \\Vdots \\\\\nC[a_n^{(p)},a_1] & \\Cdots & C[a_n^{(p)},a_n]\n  & & C[a_n^{(p)},a_1^{(p)}] & \\Cdots & C[a_n^{(p)},a_n^{(p)}]\n\\end{bNiceMatrix}$"
+ },
+ "L3556": {
+  "page": 41,
+  "code": "\\NiceMatrixOptions{renew-dots,renew-matrix}\n$\\begin{pmatrix}\n1      & \\cdots & \\cdots & 1      \\\\\n0      & \\ddots &        & \\vdots \\\\\n\\vdots & \\ddots & \\ddots & \\vdots \\\\\n0      & \\cdots & 0      & 1\n\\end{pmatrix}$"
+ },
+ "L3587": {
+  "page": 41,
+  "code": "$\\begin{bNiceMatrix}\n1 & \\hspace*{1cm}            & 0 \\\\[8mm]\n  & \\Ddots^{n \\text{ times}} &   \\\\\n0 &                          & 1 \n\\end{bNiceMatrix}$"
+ },
+ "L3600": {
+  "page": 41,
+  "code": "$\\begin{bNiceMatrix}\n1 & \\hspace*{1cm}            & 0 \\\\[8mm]\n  & \\Ddots[horizontal-label]^{n \\text{ times}} &   \\\\\n0 &                          & 1 \n\\end{bNiceMatrix}$"
+ },
+ "L3736": {
+  "page": 43,
+  "code": "$\\begin{pNiceMatrix}[xdots={nullify, shorten += 2pt, line-style = loosely dotted}]\na      & b      & 0      &        & \\Cdots & 0      \\\\ \nb      & a      & b      & \\Ddots &        & \\Vdots \\\\\n0      & b      & a      & \\Ddots &        &        \\\\\n       & \\Ddots & \\Ddots & \\Ddots &        & 0      \\\\\n\\Vdots &        &        &        &        & b      \\\\\n0      & \\Cdots &        & 0      & b      & a\n\\end{pNiceMatrix}$"
+ },
+ "L3761": {
+  "page": 43,
+  "code": "$\\begin{bNiceMatrix}[margin,hvlines]\n\\Block{3-3}<\\LARGE>{A} & & & 0 \\\\\n& \\hspace*{1cm} & & \\Vdots \\\\\n& & & 0 \\\\\n0 & \\Cdots& 0 & 0\n\\end{bNiceMatrix}$"
+ },
+ "L3835": {
+  "page": 44,
+  "code": "$\\begin{NiceArray}{ccccc}%\n  [ hvlines ,\n    first-row ,\n    last-row = 6,\n    first-col ,\n    last-col ,\n    xdots/horizontal-labels ]\n& \\Hbrace{3}{p} & \\Hbrace[brace-shift=1mm]{2}{q} \\\\\n\\Vbrace{3}{p} & 1 & 1 & 134 & 1 & 1 & \\Vbrace{3}{p} \\\\\n& 1 & 1 & 134 & 1 & 1 \\\\\n& 1 & 1 & 13456 & 1 & 1 \\\\\n\\Vbrace{2}{q} & 1 & 1 & 134 & 1 & 1 & \\Vbrace{2}{q}\\\\\n& 1 & 1 & 134 & 1 & 1 \\\\\n& \\Hbrace{3}{p} & \\Hbrace[color=blue]{2}{q} \\\\\n\\end{NiceArray}$"
+ },
+ "L3857": {
+  "page": 44,
+  "code": "decoration = { brace , raise = -0.15 em } , \ndecorate "
+ },
+ "L3910": {
+  "page": 45,
+  "code": "$\\begin{NiceArray}{\\left\\lgroup ccc\\right\\rgroup l}\n1 & 2 & 3 &  \n4 & 1 & 6 & \n7 & 8 & 9 & \\scriptstyle L_3 \\gets L_3 + L_1 + L_2\n\\end{NiceArray}$"
+ },
+ "L3971": {
+  "page": 45,
+  "code": "$\\begin{pNiceArray}{(c)(c)(c)}\na_{11} & a_{12}                                     & a_{13} \\\\\na_{21} & \\displaystyle \\int_0^1\\dfrac{1}{x^2+1}\\,dx & a_{23} \\\\\na_{31} & a_{32}                                     & a_{33} \n\\end{pNiceArray}$"
+ },
+ "L4051": {
+  "page": 46,
+  "code": "$\\begin{pNiceMatrix}[xdots/shorten += 0.3 em]\n  I       & 0      & \\Cdots  &0     \\\\\n  0       & I      & \\Ddots  &\\Vdots\\\\\n  \\Vdots  &\\Ddots  & I       &0     \\\\\n  0       &\\Cdots  & 0       &I\n\\CodeAfter \\line{2-2}{3-3}\n\\end{pNiceMatrix}$"
+ },
+ "L4067": {
+  "page": 46,
+  "code": "$\\begin{bNiceMatrix}\n  1      & \\Cdots &   & 1      & 2      & \\Cdots          & 2      \\\\\n  0      & \\Ddots &   & \\Vdots & \\Vdots & \\hspace*{2.5cm} & \\Vdots \\\\\n  \\Vdots & \\Ddots &   &        &        &                 &        \\\\\n  0      & \\Cdots & 0 & 1      & 2      & \\Cdots          & 2 \n\\CodeAfter \\line[shorten=6pt]{1-5}{4-7}\n\\end{bNiceMatrix}$"
+ },
+ "L4117": {
+  "page": 47,
+  "code": "$\\begin{NiceArray}{ccc@{\\hspace{1.5em}}c}{[cell-space-limits += 2pt,margin]}\n   1           & 1            & 1            & x \\\\\n  \\dfrac{1}{4} & \\dfrac{1}{2} & \\dfrac{1}{4} & y \\\\\n   1           & 2            & 3            & z \n\\CodeAfter\n  \\SubMatrix({1-1}{3-3})\n  \\SubMatrix({1-4}{3-4})\n\\end{NiceArray}$"
+ },
+ "L4134": {
+  "page": 47,
+  "code": "$\\begin{NiceArray}{(ccc)(c)}[cell-space-limits += 2pt]\n   1          & 1           & 1           & x \\\\\n  \\dfrac{1}{4} & \\dfrac{1}{2} & \\dfrac{1}{4} & y \\\\\n   1          & 2           & 3           & z \n\\end{NiceArray}$"
+ },
+ "L4151": {
+  "page": 47,
+  "code": "$\\begin{bNiceMatrix}[right-margin=1em]\n  1 & 1 & 1 \\\\\n  1 & a & b \\\\\n  1 & c & d \n\\CodeAfter\n  \\SubMatrix[{2-2}{3-3}]^{T}\n\\end{bNiceMatrix}$"
+ },
+ "L4210": {
+  "page": 48,
+  "code": "$\\begin{NiceArray}{cc@{\\hspace{5mm}}l}{[cell-space-limits=2pt]}\n    &   & \\frac{1}{2} \\\\\n    &   & \\frac{1}{4} \\\\[1mm]\n  a & b & \\frac{1}{2}a+\\frac{1}{4}b \\\\\n  c & d & \\frac{1}{2}c+\\frac{1}{4}d \\\\\n\\CodeAfter \n  \\SubMatrix({1-3}{2-3}) \n  \\SubMatrix({3-1}{4-2}) \n  \\SubMatrix({3-3}{4-3})\n\\end{NiceArray}$"
+ },
+ "L4227": {
+  "page": 48,
+  "code": "$\\begin{NiceArray}{cc@{\\hspace{5mm}}l}{[cell-space-limits=2pt]}\n    &   & \\frac{1}{2} \\\\\n    &   & \\frac{1}{4} \\\\[1mm]\n  a & b & \\frac{1}{2}a+\\frac{1}{4}b \\\\\n  c & d & \\frac{1}{2}c+\\frac{1}{4}d \\\\\n\\CodeAfter\n  \\SubMatrix({1-3}{2-3})[slim]\n  \\SubMatrix({3-1}{4-2})\n  \\SubMatrix({3-3}{4-3})\n\\end{NiceArray}$"
+ },
+ "L4254": {
+  "page": 49,
+  "code": "\\begin{NiceTabular}{@{}ll@{}}\n\\toprule\n  Part A              & the first part \\\\\n  \\Block{2-1}{Part B} & a first sub-part \\\\\n                      & a second sub-part \\\\\n\\bottomrule\n\\CodeAfter\n  \\SubMatrix{\\lbrace}{2-2}{3-2}{.}\n\\end{NiceTabular}"
+ },
+ "L4290": {
+  "page": 49,
+  "code": "$\\begin{NiceArray}{ccc@{}w{c}{5mm}@{}ccc}\n    &   &   && -1 & 1  & 2  \\\\\n    &   &   &&  0 & 3  & 4  \\\\\n    &   &   &&  0 & 0  & 5  \\\\\n  1 & 2 & 3 && -1 & 7  & 25 \\\\\n  0 & 4 & 5 && 0  & 12 & 41 \\\\\n  0 & 0 & 6 && 0  & 0  & 30  \n\\CodeAfter\n  \\NewDocumentCommand{\\MyDraw}{}{\\tikz \\draw [blue] (2-|1) -| (3-|2) -| (4-|3) ;}\n  \\SubMatrix({1-5}{3-7})[code = \\MyDraw ]\n  \\SubMatrix({4-1}{6-3})[code = \\MyDraw ]\n  \\SubMatrix({4-5}{6-7})[code = \\MyDraw ]\n\\end{NiceArray}$"
+ },
+ "L4341": {
+  "page": 50,
+  "code": "$\\begin{pNiceMatrix}\n  1  & 2  & 3  & 4  & 5  & 6  \\\\\n  11 & 12 & 13 & 14 & 15 & 16 \\\\\n\\CodeAfter\n  \\OverBrace{1-1}{2-3}{A}\n  \\OverBrace{1-4}{2-6}{B}\n\\end{pNiceMatrix}$"
+ },
+ "L4388": {
+  "page": 50,
+  "code": "$\\begin{pNiceMatrix}\n  1  & 2  & 3  & 4  & 5  & 6  \\\\\n  11 & 12 & 13 & 14 & 15 & 16 \\\\\n\\CodeAfter\n  \\OverBrace[shorten,yshift=3pt]{1-1}{2-3}{A}\n  \\OverBrace[shorten,yshift=3pt]{1-4}{2-6}{B}\n\\end{pNiceMatrix}$"
+ },
+ "L4436": {
+  "page": 51,
+  "code": "\\renewcommand{\\arraystretch}{1.3}\n\\begin{NiceTabular}{ccc}[corners]\n  & \\Block{1-2}{columns} \\\\\n  \\Block{2-1}{rows}\n  & cell 1 1 & cell 1 2 \\\\\n  & cell 2 1 & cell 2 2\n\\CodeAfter\n  \\TikzEveryCell{offset=1pt,draw}\n\\end{NiceTabular}"
+ },
+ "L4452": {
+  "page": 51,
+  "code": "\\renewcommand{\\arraystretch}{1.3}\n\\begin{NiceTabular}{ccc}[corners]\n\\CodeBefore\n  \\TikzEveryCell\n    {\n      offset=1pt,\n      fill=blue!15,\n      rounded corners=2pt\n    }\n\\Body\n  & \\Block{1-2}{columns} \\\\\n  \\Block{2-1}{rows}\n  & cell 1 1 & cell 1 2 \\\\\n  & cell 2 1 & cell 2 2\n\\end{NiceTabular}"
+ },
+ "L4481": {
+  "page": 51,
+  "code": "\\renewcommand{\\arraystretch}{1.4}\n\\begin{NiceTabular}{cccccc}[hvlines]\n  P & O & U & R & V & U \\\\\n  O &   &   & E & I &   \\\\\n  M & O & R & F & A & L \\\\\n  E & T & A & L &   & E \\\\\n  L & A & S & E & R & S \\\\\n  O &   & E & X & I & T\n\\CodeAfter\n  \\TikzEveryCell[empty]{fill=gray,draw}\n\\end{NiceTabular}"
+ },
+ "L4498": {
+  "page": 52,
+  "code": "\\begin{NiceTabular}{ccccc}\n1 & 2 & 3 & 4 &   \\\\\n1 &   &   & 4 & 5 \\\\\n1 &   &   &   & 5 \\\\\n1 & 2 &   & 4 & 5 \\\\\n1 & 2 & 3 & 4 & 5 \\\\\n\\CodeAfter\n  \\TikzEveryCell[not-empty]{draw}\n\\end{NiceTabular}"
+ },
+ "L4612": {
+  "page": 53,
+  "code": "\\begin{NiceTabular}{@{}llr@{}}\n\\toprule \\RowStyle{\\bfseries}\nLast name & First name & Birth day \\\\\n\\midrule\nAchard\\tabularnote{Achard is an old family of the Poitou.}\n& Jacques & June 5, 2005 \\\\\nLefebvre\\tabularnote{The name Lefebvre is an alteration of the name Lefebure.} \n& Mathilde & January 23, 1975 \\\\\nVanesse & Stephany & October 30, 1994 \\\\\nDupont & Chantal & January 15, 1998 \\\\\n\\bottomrule\n\\end{NiceTabular}"
+ },
+ "L4686": {
+  "page": 54,
+  "code": "\\begin{table}[hbt]\n\\centering\n\\NiceMatrixOptions{caption-above}\n\\begin{NiceTabular}{@{}llc@{}\n  [\n    caption = A tabular whose caption has been specified by the key\n      \\texttt{caption}\\tabularnote[$\\star$]{It's possible to put a tabular \n      note in the caption.} ,\n    label = t:tabularnote ,\n    tabularnote = Some text before the notes. ,\n    notes/bottomrule\n  ]\n\\toprule\n  Last name & First name & Length of life \\\\\n\\midrule\n  Churchill & Wiston &  91\\\\\n  Nightingale\\tabularnote{Considered as the first nurse of history}%\n  \\tabularnote{Nicknamed ``the Lady with the Lamp''.}\n  & Florence\\tabularnote{This note is shared by two references.} & 90 \\\\\n  Schoelcher & Victor & 89\\tabularnote{The label of the note is overlapping.}\\\\\n  Touchet & Marie\\tabularnote{This note is shared by two references.} & 89 \\\\\n  Wallis & John & 87 \\\\\n\\bottomrule\n\\end{NiceTabular}\n\\end{table}"
+ },
+ "L4942": {
+  "page": 57,
+  "code": "\\renewcommand{\\arraystretch}{1.3}\n\\begin{NiceTabular}{w{l}{2.5mm}w{l}{2.5mm}lr}[draw-trees-in-col=1-2]\n\\toprule\n  Category &&&  \\% \\\\\n\\midrule\n  Animal   &&& 100 \\\\\n  & Human   &&  50 \\\\\n  && Man     &  20 \\\\\n  && Woman   &  30 \\\\\n  & Fox     &&  30 \\\\\n  && Vixen   &  16 \\\\\n  && Dog     &  14 \\\\\n  & Chicken &&  20 \\\\\n  && Cock    &   8 \\\\\n  && Hen     &  12 \\\\\n\\bottomrule\n\\end{NiceTabular}"
+ },
+ "L4970": {
+  "page": 57,
+  "code": "\\renewcommand{\\arraystretch}{1.3}\n\\NiceMatrixOptions{trees= {line-width = 0.4pt, color = red , rounded-corners}}\n\\begin{NiceTabular}{w{l}{2.5mm}w{l}{2.5mm}lr}[draw-trees-in-col=1-2]\n\\toprule\n  Category &&&  \\% \\\\\n\\midrule\n  Animal   &&& 100 \\\\\n  & Human   &&  50 \\\\\n  && Man     &  20 \\\\\n  && Woman   &  30 \\\\\n  & Fox     &&  30 \\\\\n  && Vixen   &  16 \\\\\n  && Dog     &  14 \\\\\n  & Chicken &&  20 \\\\\n  && Cock    &   8 \\\\\n  && Hen     &  12 \\\\\n\\bottomrule\n\\end{NiceTabular}"
+ },
+ "L5026": {
+  "page": 58,
+  "code": "\\begin{NiceTabular}\n  [hvlines,rounded-corners]\n  {ccc}\n\\CodeBefore\n  \\rowcolor{red!15}{1}\n\\Body\n  Last name & First name & Profession \\\\\n  Arvy & Jacques & Physicist \\\\\n  Jalon & Amandine & Physicist\n\\end{NiceTabular}"
+ },
+ "L5057": {
+  "page": 59,
+  "code": "\\begin{NiceTabular}{ccc}[hvlines,cell-space-limits=3pt]\n\\CodeBefore\n  \\ShowCellNames\n  \\rowcolor{gray!15}{3}  \n\\Body\n  \\Block{2-2}{} &           & test \\\\\n                &           & blah blah \\\\\n                & some text & nothing \n\\end{NiceTabular}"
+ },
+ "L5075": {
+  "page": 59,
+  "code": "\\begin{NiceTabular}{ccc}[hvlines,cell-space-limits=3pt]\n\\CodeBefore\n  \\rowcolor{gray!15}{3}  \n\\Body\n  \\Block{2-2}{} &           & test \\\\\n                &           & blah blah \\\\\n                & some text & nothing \n\\CodeAfter \\ShowCellNames\n\\end{NiceTabular}"
+ },
+ "L5098": {
+  "page": 59,
+  "code": "$\\begin{pNiceArray}{ScW{c}{1cm}c}[xdots/nullify,first-row]\n  {C_1} & \\Cdots &  & C_n \\\\\n  2.3  & 0 & \\Cdots & 0 \\\\\n  12.4 & \\Vdots & & \\Vdots \\\\\n  1.45 \\\\\n  7.2  & 0 & \\Cdots & 0 \n\\end{pNiceArray}$"
+ },
+ "L5128": {
+  "page": 59,
+  "code": "$\\begin{bNiceMatrix}[r]\n  \\cos x & - \\sin x \\\\\n  \\sin x & \\cos x \n\\end{bNiceMatrix}$"
+ },
+ "L5159": {
+  "page": 60,
+  "code": "\\NiceMatrixOptions\n {\n   code-for-first-row = \\scriptstyle \\rotate \\text{image of },\n   code-for-last-col = \\scriptstyle\n }\n$A = \\begin{pNiceMatrix}[first-row,last-col=4]\n  e_1 & e_2 & e_3       \\\\\n  1   & 2   & 3   & e_1 \\\\\n  4   & 5   & 6   & e_2 \\\\\n  7   & 8   & 9   & e_3 \n\\end{pNiceMatrix}$"
+ },
+ "L5198": {
+  "page": 60,
+  "code": "\\NiceMatrixOptions\n  {\n    code-for-last-row = \\scriptstyle \\rotate ,\n    code-for-last-col = \\scriptstyle\n  }\n$A = \\begin{pNiceMatrix}[last-row=4,last-col=4]\n  1   & 2   & 3   & e_1 \\\\\n  4   & 5   & 6   & e_2 \\\\\n  7   & 8   & 9   & e_3 \\\\\n  \\text{image of } e_1 & e_2 & e_3 \n\\end{pNiceMatrix}$"
+ },
+ "L5254": {
+  "page": 61,
+  "code": "$\\begin{bNiceArray}{cccc|c}[small,\n                            last-col , \n                            code-for-last-col = \\scriptscriptstyle, \n                            columns-width = 3mm ] \n  1 & -2 & 3 & 4 & 5 \\\\\n  0 & 3  & 2 & 1 & 2 & L_2 \\gets 2 L_1 - L_2 \\\\\n  0 & 1  & 1 & 2 & 3 & L_3 \\gets L_1 + L_3 \n\\end{bNiceArray}$"
+ },
+ "L5311": {
+  "page": 61,
+  "code": "$\\begin{pNiceMatrix}% don’t forget the %\n    [first-row,\n     first-col,\n     code-for-first-row = \\mathbf{\\alph{jCol}} ,\n     code-for-first-col = \\mathbf{\\arabic{iRow}} ]\n  &   &    &    &   \\\\\n  & 1 & 2  & 3  & 4 \\\\\n  & 5 & 6  & 7  & 8 \\\\\n  & 9 & 10 & 11 & 12\n\\end{pNiceMatrix}$"
+ },
+ "L5348": {
+  "page": 62,
+  "code": "$C = \\pAutoNiceMatrix{3-3}{C_{\\arabic{iRow},\\arabic{jCol}}}$"
+ },
+ "L5374": {
+  "page": 62,
+  "code": "$\\begin{bNiceMatrix}[light-syntax,first-row,first-col]\n  {} a             b                 ;\n  a  2\\cos a       {\\cos a + \\cos b} ;\n  b \\cos a+\\cos b  { 2 \\cos b }\n\\end{bNiceMatrix}$"
+ },
+ "L5416": {
+  "page": 62,
+  "code": "$\\begin{bNiceMatrix}[delimiters/color=red]\n  1 & 2 \\\\\n  3 & 4 \n\\end{bNiceMatrix}$"
+ },
+ "L5443": {
+  "page": 63,
+  "code": "$\\begin{NiceArrayWithDelims}\n   {\\downarrow}{\\uparrow}{ccc}[margin]\n  1 & 2 & 3 \\\\\n  4 & 5 & 6 \\\\\n  7 & 8 & 9 \n\\end{NiceArrayWithDelims}$"
+ },
+ "L5538": {
+  "page": 64,
+  "code": "$\\begin{pNiceMatrix}[name=mymatrix]\n  1 & 2 & 3 \\\\\n  4 & 5 & 6 \\\\\n  7 & 8 & 9 \n\\end{pNiceMatrix}$\n\\tikz[remember picture,overlay] \n     \\draw (mymatrix-2-2) circle (2mm) ; "
+ },
+ "L5558": {
+  "page": 64,
+  "code": "$\\begin{pNiceMatrix}\n  1 & 2 & 3 \\\\\n  4 & 5 & 6 \\\\\n  7 & 8 & 9 \n\\CodeAfter\n  \\tikz \\draw (2-2) circle (2mm) ; \n\\end{pNiceMatrix}$"
+ },
+ "L5601": {
+  "page": 64,
+  "code": "\\pgfset \n  { \n    nicematrix / cell-node /.style = \n     {\n       inner sep = 0 pt ,\n       minimum width = 0 pt\n     }\n  }"
+ },
+ "L5904": {
+  "page": 67,
+  "code": "$\\begin{NiceArray}{c@{\\;}c@{\\;}c@{\\;}c@{\\;}c}[create-medium-nodes]\n   u_1 &-& u_0 &=& r     \\\\\n   u_2 &-& u_1 &=& r     \\\\\n   u_3 &-& u_2 &=& r     \\\\\n   u_4 &-& u_3 &=& r     \\\\\n   \\phantom{u_5} & &  \\phantom{u_4}    &\\smash{\\vdots} &       \\\\\n   u_n &-& u_{n-1} &=& r \\\\[3pt]\n   \\hline\n   u_n &-& u_0 &=& nr \\\\\n\\CodeAfter\n   \\tikz[very thick, red, opacity=0.4, name suffix = -medium]\n     \\draw (1-1.north west) -- (2-3.south east)\n       (2-1.north west) -- (3-3.south east)\n       (3-1.north west) -- (4-3.south east)\n       (4-1.north west) -- (5-3.south east)\n       (5-1.north west) -- (6-3.south east) ;\n\\end{NiceArray}$"
+ },
+ "L5966": {
+  "page": 67,
+  "code": "$\\begin{NiceMatrix}\n\\CodeBefore\n  \\tikz \\draw [fill=red!15] (7-|4) |- (8-|5) |- (9-|6) |- cycle ;\n\\Body\n  1 \\\\\n  1 & 1 \\\\\n  1 & 2 &  1 \\\\\n  1 & 3 &  3 &  1 \\\\\n  1 & 4 &  6 &  4 &  1 \\\\\n  1 & 5 & 10 & 10 &  5 &  1 \\\\\n  1 & 6 & 15 & 20 & 15 &  6 &  1 \\\\\n  1 & 7 & 21 & 35 & 35 & 21 &  7 & 1 \\\\\n  1 & 8 & 28 & 56 & 70 & 56 & 28 & 8 & 1\n\\end{NiceMatrix}$"
+ },
+ "L5989": {
+  "page": 68,
+  "code": "$\\begin{pNiceArray}{ccc|c}\n  2 & 1 & 3 & 0 \\\\\n  3 & 3 & 1 & 0 \\\\\n  3 & 3 & 1 & 0 \n\\CodeAfter \n  \\tikz \\draw [red] (3.4-|1) -- (3.4-|last) ;\n\\end{pNiceArray}$"
+ },
+ "L6071": {
+  "page": 68,
+  "code": "\\DeclareKeys[nicematrix/environments]{arraystretch.store=\\arraystretch}"
+ },
+ "L6079": {
+  "page": 69,
+  "code": "\\begin{NiceTabular}{cc}[hvlines,arraystretch=2]\na & b \\\\\nc & d \n\\end{NiceTabular}"
+ },
+ "L6132": {
+  "page": 69,
+  "code": "\\ExplSyntaxOn\n\\cs_new_protected:Nn \\__pantigny_crossbox:nnn\n  {\n    \\tikz \\draw [ #3 ] \n          ( #1 -| \\inteval { #2 + 1 } ) -- ( \\inteval { #1 + 1 } -| #2 ) \n          ( #1 -| #2 ) -- ( \\inteval { #1 + 1 } -| \\inteval { #2 + 1 } ) ; \n  }\n\n\\NewDocumentCommand \\crossbox { ! O { } }\n  {\n    \\tl_gput_right:Ne \\g_nicematrix_code_before_tl\n      { \n        \\__pantigny_crossbox:nnn \n          { \\arabic { iRow } } \n          { \\arabic { jCol } }\n          { \\exp_not:n { #1 } }\n      }\n    \\ignorespaces \n  }\n\\ExplSyntaxOff"
+ },
+ "L6164": {
+  "page": 70,
+  "code": "\\begin{NiceTabular}{ccc}[hvlines]\n\\CodeBefore\n  \\arraycolor{gray!10}\n\\Body\n  merlan & requin & cabillaud \\\\\n  baleine & \\crossbox[red] & morue \\\\\n  mante & raie & poule \n\\end{NiceTabular}"
+ },
+ "L6206": {
+  "page": 70,
+  "code": "$A = \\begin{pNiceMatrix}\n  1      & \\Cdots &        & 1      \\\\\n  a+b    & \\Ddots &        & \\Vdots \\\\\n  \\Vdots & \\Ddots &        &        \\\\\n  a+b    & \\Cdots & a+b    & 1\n\\end{pNiceMatrix}$"
+ },
+ "L6216": {
+  "page": 70,
+  "code": "$A = \\begin{pNiceMatrix}\n  1      & \\Cdots &        & 1      \\\\\n  a+b    &        &        & \\Vdots \\\\\n  \\Vdots & \\Ddots & \\Ddots &        \\\\\n  a+b    & \\Cdots & a+b    & 1\n\\end{pNiceMatrix}$"
+ },
+ "L6352": {
+  "page": 72,
+  "code": "\\usepackage[spanish,es-noshorthands]{babel}"
+ },
+ "L6371": {
+  "page": 72,
+  "code": "\\let\\TeXyear\\year\n\\documentclass{IEEEaccess}\n\\let\\year\\TeXyear"
+ },
+ "L6432": {
+  "page": 72,
+  "code": "\\DocumentMetadata{tagging = on}\n\\documentclass{article}\n\\usepackage{lmodern}\n\\usepackage{nicematrix}\n\n\\begin{document}\n\n\\begin{center}\n\\tagpdfsetup{table/header-rows=1}\n\\begin{NiceTabular}{ccc}[hvlines]\n  First name & Last name & Age \\\\\n  Paul       & Imbert    & $66$ \\\\\n  John       & Sarrus    & $23$ \\\\\n  Liz        & Taylor    & $100$ \\\\\n  George     & Adams     & $34$ \n\\end{NiceTabular}\n\\end{center}\n\n\\end{document}"
+ },
+ "L6488": {
+  "page": 73,
+  "code": "\\ExplSyntaxOn\n\\NewDocumentCommand { \\stars } { m }\n  { \\prg_replicate:nn { \\value { #1 } } { \\( \\star \\) } } \n\\ExplSyntaxOff"
+ },
+ "L6510": {
+  "page": 73,
+  "code": "\\NiceMatrixOptions \n  {\n    notes = \n     {\n       style = \\stars{#1} , \n       enumitem-keys = \n        { \n          widest* = \\value{tabularnote} ,\n          align = right \n        } \n     }\n  }"
+ },
+ "L6525": {
+  "page": 73,
+  "code": "\\begin{NiceTabular}{@{}llr@{}}\n\\toprule \\RowStyle{\\bfseries}\n  Last name & First name & Birth day \\\\\n\\midrule\n  Achard\\tabularnote{Achard is an old family of the Poitou.} \n  & Jacques & 5 juin 1962 \\\\\n  Lefebvre\\tabularnote{The name Lefebvre is an alteration of the name Lefebure.} \n  & Mathilde & 23 mai 1988 \\\\\n  Vanesse & Stephany & 30 octobre 1994 \\\\\n  Dupont & Chantal & 15 janvier 1998 \\\\\n\\bottomrule\n\\end{NiceTabular}"
+ },
+ "L6561": {
+  "page": 74,
+  "code": "\\ttfamily \\small\n\\begin{NiceTabular}{X[m]X[m]X[m]}[hvlines,cell-space-limits=3pt,rounded-corners]\n  \\Block[tikz={pattern=grid,pattern color=lightgray}]{}\n    {pattern = grid,\\\\ pattern color = lightgray}\n& \\Block[tikz={pattern = north west lines,pattern color=blue}]{}\n    {pattern = north west lines,\\\\ pattern color = blue}\n& \\Block[tikz={outer color = red!50, inner color=white }]{2-1}\n    {outer color = red!50,\\\\ inner color = white} \\\\\n  \\Block[tikz={pattern = sixpointed stars, pattern color = blue!15}]{}\n    {pattern = sixpointed stars,\\\\ pattern color = blue!15}\n& \\Block[tikz={left color = blue!50}]{}\n    {left color = blue!50} \\\\\n\\end{NiceTabular}"
+ },
+ "L6592": {
+  "page": 74,
+  "code": "\\begin{NiceTabular}{ccc}[hvlines]\n\\CodeBefore\n  \\columncolor[RGB]{169,208,142}{2}\n\\Body\n  one & two & three \\\\\n  \\Block[transparent,tikz={pattern = north west lines, pattern color = red}]{1-*}{}\n  four & five & six \\\\\n  seven & eight & nine\n\\end{NiceTabular}"
+ },
+ "L6619": {
+  "page": 75,
+  "code": "\\tcbset\n  {\n    colframe = blue!50!black ,\n    colback = white ,\n    fonttitle = \\bfseries ,\n    nobeforeafter ,\n    center title\n  }\n\\tcbox\n  [\n    left = 0mm ,\n    right = 0mm ,\n    top = 0mm ,\n    bottom = 0mm ,\n    boxsep = 0mm ,\n    toptitle = 0.5mm ,\n    bottomtitle = 0.5mm ,\n    title = My table\n  ]\n  {\n    \\renewcommand{\\arraystretch}{1.2}% <-- the % is mandatory here\n    \\begin{NiceTabular}{rcl}[hvlines-except-borders,rules/color=blue!50!black]\n    \\CodeBefore\n      \\rowcolor{red!15}{1}\n    \\Body\n      One & Two & Three \\\\\n      Men & Mice & Lions \\\\\n      Upper & Middle & Lower\n    \\end{NiceTabular}\n  }"
+ },
+ "L6658": {
+  "page": 75,
+  "code": "\\color{blue}\n\\[\\begin{NiceArray}\n  [columns-width=1cm,hvlines,rules/color=black]\n  {>{\\color{black}}cccccc}  \n  f(x)   & \\Block[C]{1-5}{+} \\\\\n  f'(x)  & \\Block[C]{1-2}{+} && \\Block[C]{1-2}{+} && + \\\\\n  f''(x) & - & \\Block[C]{1-2}{-} && \\Block[C]{1-2}{+} \\\\\n\\end{NiceArray}\\]"
+ },
+ "L6685": {
+  "page": 76,
+  "code": "$\\begin{NiceArray}{r|cw{c}{1cm}cw{c}{1cm}c}[cell-space-limits=2pt]\nx     & 0 & - & \\frac{1}{e} & +  & +\\infty \\\\\n\\Hline\nf'(x) &   & - & 0 & + & \\\\\n\\Hline\n      & 1 &   &   &   & +\\infty \\\\\nf     &   &   &   &   &         \\\\\n      &   &   & (1/e)^{1/e} \\\\\n\\CodeAfter\n  \\begin{tikzpicture}\n  \\draw (3-|4.5) -- (5-|4.5) ;\n  \\draw ([xshift=3pt]2-|2) -- ([xshift=3pt]3-|2) ; \n  \\draw [->,red,shorten < = 3pt] (3-2) -- (5-4) ;\n  \\draw [->,red,shorten < = 3pt] (5-4) -- (3-6) ;   \n  \\end{tikzpicture}\n\\end{NiceArray}$"
+ },
+ "L6720": {
+  "page": 76,
+  "code": "\\begin{NiceTabular}{{>{\\columncolor{red!15}}cllr}[vlines]}\n\\Hline\nkey  & first name & last name & age \\\\\n\\hhline{=---}\n2072 & Jean       & Marcier  & 68  \\\\     \n2073 & Claude     & Beaumont & 23  \\\\\n\\Hline\n\\end{NiceTabular}"
+ },
+ "L6748": {
+  "page": 77,
+  "code": "$\\begin{pNiceMatrix}\n  \\Block[borders={bottom,right,tikz=dotted}]{2-2}{}\n  1 & 2 & 0  & 0 & 0 & 0 \\\\\n  4 & 5 & 0  & 0 & 0 & 0 \\\\\n  0 & 0 & \\Block[borders={all,tikz=dotted}]{2-2}{}\n          7  & 1 & 0 & 0 \\\\\n  0 & 0 & -1 & 2 & 0 & 0 \\\\\n  0 & 0 & 0  & 0 & \\Block[borders={left,top,tikz=dotted}]{2-2}{}\n                   3 & 4 \\\\\n  0 & 0 & 0  & 0 & 1 & 4 \n\\end{pNiceMatrix}$"
+ },
+ "L6782": {
+  "page": 77,
+  "code": "\\setlength{\\extrarowheight}{1mm}\n\\[\\begin{vNiceArray}{cccc;ccc}[columns-width=6mm, xdots/shorten += 3pt]\n  a_0   &      &&       &b_0    &      &     \\\\\n  a_1   &\\Ddots&&       &b_1    &\\Ddots&     \\\\\n  \\Vdots&\\Ddots&&       &\\Vdots &\\Ddots&b_0  \\\\\n  a_p   &      &&a_0    &       &      &b_1   \\\\\n        &\\Ddots&&a_1    &b_q    &      &\\Vdots\\\\\n        &      &&\\Vdots &       &\\Ddots&      \\\\\n        &      &&a_p    &       &      &b_q    \n\\end{vNiceArray}\\]"
+ },
+ "L6805": {
+  "page": 78,
+  "code": "\\NiceMatrixOptions{code-for-last-col=\\scriptstyle}\n$\\begin{pNiceMatrix}[vlines=-1,xdots/nullify,last-col]\n  1      & 1 & 1 &\\Cdots &   & 1      & 0      & \\\\\n  0      & 1 & 0 &\\Cdots &   & 0      &        & L_2 \\gets L_2-L_1 \\\\\n  0      & 0 & 1 &\\Ddots &   & \\Vdots &        & L_3 \\gets L_3-L_1 \\\\\n         &   &   &\\Ddots &   &        & \\Vdots & \\Vdots \\\\\n  \\Vdots &   &   &\\Ddots &   & 0      & \\\\\n  0      &   &   &\\Cdots & 0 & 1      & 0      & L_n \\gets L_n-L_1\n\\end{pNiceMatrix}$"
+ },
+ "L6840": {
+  "page": 78,
+  "code": "\\setcounter{MaxMatrixCols}{12}\n\\newcommand{\\blue}{\\color{blue}}\n\\[\\begin{pNiceMatrix}%\n    [last-row,last-col,xdots={nullify,line-style={dashed,dash expand off,blue}}]\n  1& & & \\Vdots & & & & \\Vdots \\\\\n  & \\Ddots[line-style=standard] \\\\\n  & & 1 \\\\\n  \\Cdots & & & \\blue 0 & \\Cdots & & & \\blue 1 & & & \\Cdots & \\blue \\leftarrow i \\\\\n  & & & & 1 \\\\\n  & & &\\Vdots & & \\Ddots[line-style=standard] & & \\Vdots \\\\\n  & & & & & & 1 \\\\\n  \\Cdots & & & \\blue 1 & \\Cdots & & \\Cdots & \\blue 0 & & & \\Cdots & \\blue \\leftarrow j \\\\\n  & & & & & & & & 1 \\\\\n  & & & & & & & & & \\Ddots[line-style=standard] \\\\\n  & & & \\Vdots & & & & \\Vdots & & & 1 \\\\\n  & & & \\blue \\overset{\\uparrow}{i} & & & & \\blue \\overset{\\uparrow}{j} \\\\\n\\end{pNiceMatrix}\\]"
+ },
+ "L6869": {
+  "page": 79,
+  "code": "{\\NiceMatrixOptions{xdots={horizontal-labels,line-style = <->}}}\n$\\begin{pNiceArray}{ccc|cc}[first-row,last-col,margin]\n  \\Hdotsfor{3}^{3} & \\Hdotsfor{2}^{2} \\\\\n  2 & 1 & 1 & 1 & 1 & \\Vdotsfor{3}^{3}\\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n\\Hline\n  1 & 1 & 1 & 1 & 1 & \\Vdotsfor{2}^{2} \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n\\end{pNiceArray}$"
+ },
+ "L6890": {
+  "page": 79,
+  "code": "{\\NiceMatrixOptions{xdots={horizontal-labels,line-style = <->}}}\n$\\begin{pNiceArray}{ccc|cc}[first-row,last-col,margin]\n  \\Hdotsfor{3}:{3} & \\Hdotsfor{2}:{2} \\\\\n  2 & 1 & 1 & 1 & 1 & \\Vdotsfor{3}:{3} \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n\\Hline\n  1 & 1 & 1 & 1 & 1 & \n  \\Vdotsfor{2}:{2 \\rlap{ \\smash{rows}}} \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n\\end{pNiceArray}$"
+ },
+ "L6919": {
+  "page": 79,
+  "code": "\\NiceMatrixOptions{xdots/horizontal-labels}\n$\\begin{pNiceArray}{ccc|cc}[first-row,last-col,margin]\n  \\Hbrace{3}{3} & \\Hbrace{2}{2} \\\\\n  2 & 1 & 1 & 1 & 1 & \\Vbrace{3}{3} \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n\\Hline\n  1 & 1 & 1 & 1 & 1 & \\Vbrace{2}{2} \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n\\end{pNiceArray}$"
+ },
+ "L6948": {
+  "page": 80,
+  "code": "\\NiceMatrixOptions{xdots/horizontal-labels}\n\\tikzset\n  {\n    nicematrix/brace/.style = \n      { \n        decoration = \n          { \n            calligraphic brace , \n            amplitude = 0.4 em , \n            raise = -0.25 em \n          } , \n        line width = 0.1 em ,\n        decorate \n      } \n  }"
+ },
+ "L6967": {
+  "page": 80,
+  "code": "$\\begin{pNiceArray}{ccc|cc}[first-row,last-col,margin]\n  \\Hbrace{3}{3} & \\Hbrace{2}{2} \\\\\n  2 & 1 & 1 & 1 & 1 & \\Vbrace{3}{3} \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n\\Hline\n  1 & 1 & 1 & 1 & 1 & \\Vbrace{2}{2} \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n\\end{pNiceArray}$"
+ },
+ "L6988": {
+  "page": 80,
+  "code": "$\\begin{pNiceArray}{ccc|cc}[margin,last-col]\n  2 & 1 & 1 & 1 & 1 & \\Block{3-1}{\\quad 3} \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n\\Hline\n  1 & 1 & 1 & 1 & 1 & \\Block{2-1}{\\quad 2} \\\\\n  1 & 1 & 1 & 1 & 1 \\\\\n\\CodeAfter\n  \\OverBrace[shorten,yshift=1.5mm]{1-1}{1-3}{3}\n  \\OverBrace[shorten,yshift=1.5mm]{1-4}{1-5}{2}\n  \\SubMatrix{.}{1-1}{3-5}{\\rbrace}[xshift=3.5mm]\n  \\SubMatrix{.}{4-1}{5-5}{\\rbrace}[xshift=3.5mm]\n\\end{pNiceArray}$"
+ },
+ "L7027": {
+  "page": 81,
+  "code": "\\begin{NiceMatrixBlock}[auto-columns-width]\n\\NiceMatrixOptions\n  {\n    light-syntax,\n    last-col, code-for-last-col = \\color{blue}\\scriptstyle,\n    vlines = 5 ,\n    matrix/columns-type = r ,\n    no-cell-nodes % only for speedup\n  }\n\\setlength{\\extrarowheight}{1mm}\n\n\\quad $\\begin{pNiceMatrix}\n12  -8  7  5   3 {} ;\n 3 -18 12  1   4    ;\n-3 -46 29 -2 -15    ;\n 9  10 -5  4   7\n\\end{pNiceMatrix}$\n\n\\smallskip\n\\quad $\\begin{pNiceMatrix}\n12  -8   7  5   3 ;\n0   64 -41  1  19  { L_2 \\gets L_1-4L_2  } ;\n0 -192 123 -3 -57  { L_3 \\gets L_1+4L_3  } ;\n0 -64   41 -1 -19  { L_4 \\gets 3L_1-4L_4 } ;\n\\end{pNiceMatrix}$\n\n\\smallskip\n\\quad $\\begin{pNiceMatrix}\n12 -8   7 5  3 ;\n0  64 -41 1 19 ;\n0   0   0 0  0 { L_3 \\gets 3 L_2 + L_3 }\n\\end{pNiceMatrix}$\n\n\\smallskip\n\\quad $\\begin{pNiceMatrix}\n12 -8   7 5  3 {} ;\n0  64 -41 1 19    ;\n\\end{pNiceMatrix}$\n\\end{NiceMatrixBlock}"
+ },
+ "L7125": {
+  "page": 81,
+  "code": "\\begin{NiceMatrixBlock}[auto-columns-width]\n\\NiceMatrixOptions\n  {\n    delimiters/max-width,\n    light-syntax,\n    last-col, code-for-last-col = \\color{blue}\\scriptstyle,\n    vlines = 5 ,\n    matrix/columns-type = r ,\n    no-cell-nodes % only for speedup\n  }\n\\setlength{\\extrarowheight}{1mm}\n\n\\quad $\\begin{pNiceMatrix}\n12  -8  7  5   3 {} ;\n 3 -18 12  1   4    ;\n-3 -46 29 -2 -15    ;\n 9  10 -5  4   7\n\\end{pNiceMatrix}$\n...\n\\end{NiceMatrixBlock}"
+ },
+ "L7202": {
+  "page": 82,
+  "code": "\\setlength{\\extrarowheight}{1mm}\n\\[\\begin{NiceMatrix}[r, last-col=6, code-for-last-col = \\scriptstyle \\color{blue}]\n12 &  -8  &  7 & 5 &  3 \\\\\n 3 & -18  & 12 & 1 &  4 \\\\\n-3 & -46  & 29 &-2 &-15 \\\\\n 9 & 10   &-5  &4  & 7 \\\\[1mm]\n12 & -8   & 7  &5  & 3 \\\\\n0  & 64   &-41 & 1 & 19 & L_2 \\gets L_1-4L_2  \\\\\n0  & -192 &123 &-3 &-57 & L_3 \\gets L_1+4L_3  \\\\\n0  & -64  & 41 &-1 &-19 & L_4 \\gets 3L_1-4L_4 \\\\[1mm]\n12 & -8   &7   &5  & 3 \\\\\n0  & 64   &-41 &1  &19 \\\\\n0  &  0   &0   &0  & 0  & L_3 \\gets 3L_2+L_3 \\\\[1mm]\n12 & -8   &7   &5  & 3 \\\\\n0  & 64   &-41 & 1 & 19 \\\\\n\\CodeAfter [sub-matrix/vlines=4]\n   \\SubMatrix({1-1}{4-5})\n   \\SubMatrix({5-1}{8-5})\n   \\SubMatrix({9-1}{11-5})\n   \\SubMatrix({12-1}{13-5})\n\\end{NiceMatrix}\\]"
+ },
+ "L7241": {
+  "page": 83,
+  "code": "\\setlength{\\extrarowheight}{1mm}\n\\[\\begin{NiceArray}\n   [ \n     vlines-in-sub-matrix = I,\n     last-col, \n     code-for-last-col = \\scriptstyle \\color{blue} \n   ]\n  {rrrrIr}\n12 &  -8  &  7 & 5 &  3 \\\\\n 3 & -18  & 12 & 1 &  4 \\\\\n-3 & -46  & 29 &-2 &-15 \\\\\n 9 & 10   &-5  &4  & 7 \\\\[1mm]\n12 & -8   & 7  &5  & 3 \\\\\n0  & 64   &-41 & 1 & 19 & L_2 \\gets L_1-4L_2  \\\\\n0  & -192 &123 &-3 &-57 & L_3 \\gets L_1+4L_3  \\\\\n0  & -64  & 41 &-1 &-19 & L_4 \\gets 3L_1-4L_4 \\\\[1mm]\n12 & -8   &7   &5  & 3 \\\\\n0  & 64   &-41 &1  &19 \\\\\n0  &  0   &0   &0  & 0 & L_3 \\gets 3L_2+L_3 \\\\[1mm]\n12 & -8   &7   &5  & 3 \\\\\n0  & 64   &-41 & 1 & 19 \\\\\n\\CodeAfter \n   \\SubMatrix({1-1}{4-5})\n   \\SubMatrix({5-1}{8-5})\n   \\SubMatrix({9-1}{11-5})\n   \\SubMatrix({12-1}{13-5})\n\\end{NiceArray}\\]"
+ },
+ "L7287": {
+  "page": 84,
+  "code": "$\\begin{pNiceArray}{>{\\strut}cccc}[margin,rules/color=blue,no-cell-nodes]\n\\Block[draw]{}{a_{11}} & a_{12} & a_{13} & a_{14} \\\\\na_{21} & \\Block[draw]{}{a_{22}} & a_{23} & a_{24} \\\\\na_{31} & a_{32} & \\Block[draw]{}{a_{33}} & a_{34} \\\\\na_{41} & a_{42} & a_{43} & \\Block[draw]{}{a_{44}} \\\\\n\\end{pNiceArray}$"
+ },
+ "L7314": {
+  "page": 84,
+  "code": "$\\begin{pNiceArray}{>{\\strut}cccc}% <-- % mandatory\n   [margin, extra-margin=2pt,no-cell-nodes]\n  \\rowcolor{red!15}A_{11} & A_{12} & A_{13} & A_{14} \\\\\n  A_{21} & \\rowcolor{red!15}A_{22} & A_{23} & A_{24} \\\\\n  A_{31} & A_{32} & \\rowcolor{red!15}A_{33} & A_{34} \\\\\n  A_{41} & A_{42} & A_{43} & \\rowcolor{red!15}A_{44}  \n\\end{pNiceArray}$"
+ },
+ "L7333": {
+  "page": 85,
+  "code": "\\NewDocumentCommand{\\OneRow}{}\n  {\\Block[tikz={xoffset=2.5pt,yoffset=0.8pt,fill=red!15,rounded corners = 2pt}]{1-*}{}}\n$\\begin{pNiceArray}{ccc}[last-col, margin = 2pt]\n\\OneRow a & a + b & a + b + c & L_1 \\\\\n\\OneRow a & a     & a + b     & L_2 \\\\\n\\OneRow a & a     & a         & L_3\n\\end{pNiceArray}$"
+ },
+ "L7371": {
+  "page": 85,
+  "code": "\\tikzset{highlight/.style={rectangle,\n                           fill=red!15,\n                           rounded corners = 0.5 mm,\n                           inner sep=1pt,\n                           fit = #1}}"
+ },
+ "L7383": {
+  "page": 85,
+  "code": "\\[\\begin{NiceArray}{*{6}{c}@{\\hspace{6mm}}*{5}{c}}[xdots/nullify]\n\\CodeBefore [create-cell-nodes]\n  \\SubMatrix({2-7}{6-last})\n  \\SubMatrix({7-2}{last-6})\n  \\SubMatrix({7-7}{last-last})\n  \\begin{tikzpicture}\n    \\node [highlight = (9-2) (9-6)] { } ;\n    \\node [highlight = (2-9) (6-9)] { } ;\n  \\end{tikzpicture}\n\\Body\n    &        &        &        &        &        &        &        & \\color{blue}\\scriptstyle C_j \\\\\n    &        &        &        &        &        & b_{11} & \\Cdots & b_{1j} & \\Cdots & b_{1n} \\\\\n    &        &        &        &        &        & \\Vdots &        & \\Vdots &        & \\Vdots \\\\\n    &        &        &        &        &        &        &        & b_{kj} \\\\\n    &        &        &        &        &        &        &        & \\Vdots \\\\\n    &        &        &        &        &        & b_{n1} & \\Cdots & b_{nj} & \\Cdots & b_{nn} \\\\[3mm]\n    & a_{11} & \\Cdots &        &        & a_{1n} \\\\\n    & \\Vdots &        &        &        & \\Vdots &        &        & \\Vdots \\\\\n\\color{blue}\\scriptstyle L_i\n    & a_{i1} & \\Cdots & a_{ik} & \\Cdots & a_{in} & \\Cdots &        & c_{ij} \\\\\n    & \\Vdots &        &        &        & \\Vdots \\\\\n    & a_{n1} & \\Cdots &        &        & a_{nn}  \\\\\n\\CodeAfter\n\\tikz \\draw [gray,shorten > = 1mm, shorten < = 1mm] (9-4.north) to [bend left] (4-9.west) ;\n\\end{NiceArray}\\]"
+ },
+ "L7443": {
+  "page": 86,
+  "code": "\\pgfset \n  { \n    nicematrix/cell-node/.append style = \n      { text/rotate = 45, minimum size = 6 mm }\n  }\n\n\\setlength{\\tabcolsep}{0pt}\n\n\\adjustbox{rotate = -45, set depth = 6mm + 1.414 \\arrayrulewidth}\n  {\\begin{NiceTabular} [ hvlines, corners=S, baseline = line-9 ] { cccccccc }\n   \\CodeBefore\n     \\chessboardcolors{red!15}{blue!15}\n   \\Body\n     1 & 1 & 1  & 1  & 1  & 1 & 1 & 1 \\\\\n     1 & 2 & 3  & 4  & 5  & 6 & 7 \\\\\n     1 & 3 & 6  & 10 & 15 & 21 \\\\\n     1 & 4 & 10 & 20 & 35 \\\\\n     1 & 5 & 15 & 35 \\\\\n     1 & 6 & 21 \\\\\n     1 & 7 \\\\\n     1 \n   \\end{NiceTabular}}"
+ }
+}
