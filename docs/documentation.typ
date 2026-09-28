@@ -131,7 +131,7 @@
       #link("https://github.com/QuadnucYard/pavemat")[pavemat].
 
       #v(0.5em)
-      Version 0.1.0 — by akad —
+      Version 0.1.0 — by ali —
       #link("https://github.com/coder56765/clanker-slop-nicematrix")
     ]
   ]
