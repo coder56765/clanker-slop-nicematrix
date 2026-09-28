@@ -12,11 +12,20 @@
 /// Direction steps.
 #let _steps = (l: (0, 1), c: (0, 1), v: (1, 0), d: (1, 1), i: (1, -1))
 
+/// Options that `connect` adds to those of `dotline`.
+#let connect-preset = (stroke: (:), marks: "->", shorten: 0.2em)
+
 /// Resolves the drawing style of a leader from the global `dots` options and
-/// the options of the marker. Must be called in a context.
-#let leader-style(dots, opts) = {
+/// the options of the marker. `at` is the cell `(i, j)` where the leader
+/// starts, given to a `fill` function. Must be called in a context.
+#let leader-style(dots, opts, at: none) = {
   let o = dots + opts
-  let fill = if o.fill == auto { text.fill } else { o.fill }
+  // `fill: (i, j) => color`, `none` meaning the text colour.
+  let fill = if type(o.fill) == function {
+    let f = if at == none { auto } else { (o.fill)(..at) }
+    if f == none { auto } else { f }
+  } else { o.fill }
+  let fill = if fill == auto { text.fill } else { fill }
   let label-fill = if o.label-fill == auto {
     if page.fill == auto or page.fill == none { white } else { page.fill }
   } else { o.label-fill }
@@ -184,7 +193,7 @@
       p1 = if open1 { (open-x0(fin.at(1)), open-y1(fin.at(0))) } else { (cf.box.x1, cf.box.y0) }
     }
 
-    let st = leader-style(dots, L.opts)
+    let st = leader-style(dots, L.opts, at: (L.i, L.j))
     // Diagonals are drawn parallel to the first one.
     if L.dir in ("d", "i") and to-bool(dots.parallel, name: "parallel") and L.rowspan == 1 {
       let (dx, dy) = (p1.at(0) - p0.at(0), p1.at(1) - p0.at(1))
@@ -207,21 +216,30 @@
   (items: items, bounds: bnds, blocks: blocks, lines: lines)
 }
 
-/// A leader between two arbitrary cells (the `dotline` decoration): the
-/// segment between the centres of their contents, clipped by the contents.
-#let dotline-points(a, b) = {
+/// A leader between two arbitrary cells (the `dotline` decoration): from the
+/// centre of each content, a ray (turned by `bend` to the left of the way
+/// from `a` to `b`, symmetrically at `b`) clipped by the content.
+#let dotline-points(a, b, bend: 0deg) = {
   let ca = ((a.box.x0 + a.box.x1) / 2, (a.box.y0 + a.box.y1) / 2)
   let cb = ((b.box.x0 + b.box.x1) / 2, (b.box.y0 + b.box.y1) / 2)
   let (dx, dy) = (cb.at(0) - ca.at(0), cb.at(1) - ca.at(1))
-  let exit(c) = {
+  let l = calc.sqrt(calc.pow(dx / 1pt, 2) + calc.pow(dy / 1pt, 2)) * 1pt
+  if l == 0pt { return (ca, cb) }
+  let (ux, uy) = (dx / l, dy / l)
+  // The left of the direction of travel, on the page (y grows downwards).
+  let (nx, ny) = (uy, -ux)
+  let (co, si) = (calc.cos(bend), calc.sin(bend))
+  let out = (ux * co + nx * si, uy * co + ny * si)
+  let inn = (-ux * co + nx * si, -uy * co + ny * si)
+  let exit(c, v) = {
     let (hw, hh) = ((c.box.x1 - c.box.x0) / 2, (c.box.y1 - c.box.y0) / 2)
-    let tx = if dx == 0pt { 1e9 } else { hw / calc.abs(dx) }
-    let ty = if dy == 0pt { 1e9 } else { hh / calc.abs(dy) }
+    let tx = if calc.abs(v.at(0)) < 1e-9 { 1e9 * 1pt } else { hw / calc.abs(v.at(0)) }
+    let ty = if calc.abs(v.at(1)) < 1e-9 { 1e9 * 1pt } else { hh / calc.abs(v.at(1)) }
     calc.min(tx, ty)
   }
-  let (ta, tb) = (exit(a), exit(b))
+  let (ta, tb) = (exit(a, out), exit(b, inn))
   (
-    (ca.at(0) + dx * ta, ca.at(1) + dy * ta),
-    (cb.at(0) - dx * tb, cb.at(1) - dy * tb),
+    (ca.at(0) + out.at(0) * ta, ca.at(1) + out.at(1) * ta),
+    (cb.at(0) + inn.at(0) * tb, cb.at(1) + inn.at(1) * tb),
   )
 }

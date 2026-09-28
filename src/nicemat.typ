@@ -3,9 +3,9 @@
 
 #import "util.typ": *
 #import "parse.typ": rows-of, parse-body
-#import "metrics.typ": BIG, cell-eq, ink, placeable, math-metrics, delim-glyph
+#import "metrics.typ": BIG, cell-eq, ink, placeable, math-metrics, delim-glyph, math-level, math-style, style-at
 #import "layout.typ": layout-rows, layout-cols
-#import "leaders.typ": resolve-leaders, leader-style, dotline-points
+#import "leaders.typ": resolve-leaders, leader-style, dotline-points, connect-preset
 #import "rules.typ": line-indices, corner-cells, rule-items
 #import "decorations.typ": *
 #import "group.typ": group-state, group-widths
@@ -39,9 +39,34 @@
   false
 }
 
-#let _measure-record(c, small, dots) = {
+/// The lines of a cell body written with `\` (one line: `none`).
+#let _split-lines(b) = {
+  if type(b) != content or not b.has("children") { return none }
+  if not b.children.any(c => c.func() == linebreak) { return none }
+  let lines = ((),)
+  for c in b.children {
+    if c.func() == linebreak { lines.push(()) } else { lines.at(-1).push(c) }
+  }
+  lines.map(l => if l.len() == 0 { [] } else { l.join() })
+}
+
+/// Measures a record in the math style `st` (from `math-style`). `lines`
+/// holds what multi-line cells need: the horizontal alignment of each cell
+/// and the gap between lines.
+#let _measure-record(c, st, dots, lines) = {
+  if c.kind == "cell" and "lines" in c {
+    // Lines stacked like the rows of `mat` (a `vec` without delimiters,
+    // whose cells keep the style of the cell), centred on the math axis.
+    let ha = (lines.align)(c)
+    let stack = math.vec(delim: none, align: ha, gap: lines.gap, ..c.lines.map(l => style-at(st.cells, l)))
+    let e = cell-eq(stack, style: st)
+    let m = ink(e)
+    let forced = c.opts.at("empty", default: auto)
+    let empty = if forced != auto { to-bool(forced, name: "empty") } else { c.lines.all(_content-empty) or m.w == 0pt }
+    return c + (eq: e, m: m + (empty: empty))
+  }
   if c.kind == "cell" or c.kind == "pad" {
-    let e = cell-eq(c.body, small: small)
+    let e = cell-eq(c.body, style: st)
     let m = ink(e)
     let forced = c.opts.at("empty", default: auto)
     let empty = if forced != auto { to-bool(forced, name: "empty") } else { _content-empty(c.body) or m.w == 0pt }
@@ -50,12 +75,12 @@
   if c.kind == "leader" {
     let nullify = to-bool(c.opts.at("nullify", default: dots.nullify), name: "nullify")
     let spanned = c.rowspan > 1 or c.colspan > 1 or c.at("dotsfor", default: false)
-    let m = if nullify or spanned { (w: 0pt, a: 0pt, d: 0pt) } else { ink(cell-eq(c.body, small: small)) }
+    let m = if nullify or spanned { (w: 0pt, a: 0pt, d: 0pt) } else { ink(cell-eq(c.body, style: st)) }
     return c + (eq: none, m: m + (empty: true))
   }
   if c.kind == "diagbox" {
     // Room for the two labels on both sides of the diagonal.
-    let (lo, up) = (cell-eq(c.lower, small: small), cell-eq(c.upper, small: small))
+    let (lo, up) = (cell-eq(c.lower, style: st), cell-eq(c.upper, style: st))
     let (ml, mu) = (ink(lo), ink(up))
     let m = (w: ml.w + mu.w, a: mu.a + mu.d + ml.a, d: ml.d, empty: false)
     return c + (eq: none, lower-eq: lo, upper-eq: up, ml: ml, mu: mu, m: m)
@@ -93,6 +118,8 @@
   augment: none,
   hlines: none,
   vlines: none,
+  hvlines: false,
+  borders: auto,
   stroke: auto,
   fill: none,
   corners: none,
@@ -105,10 +132,11 @@
   margin: auto,
   column-width: auto,
   baseline: horizon,
-  small: false,
+  small: auto,
   dots: (:),
   background: none,
   foreground: none,
+  name: none,
   debug: false,
 ) = {
   if body.named().len() > 0 {
@@ -129,13 +157,25 @@
   let last-row = to-bool(last-row, name: "last-row")
   let first-col = to-bool(first-col, name: "first-col")
   let last-col = to-bool(last-col, name: "last-col")
-  let small = to-bool(small, name: "small")
-  let debug = to-bool(debug, name: "debug")
+  let small-opt = if small == auto { auto } else { to-bool(small, name: "small") }
+  // `debug`: `true` (cells and rules), `"cells"`, `"rules"` or `false`.
+  let debug = {
+    let s = if type(debug) == bool { if debug { "all" } else { "none" } } else { plain-text(debug).trim() }
+    if s == "true" { "all" } else if s == "false" { "none" } else if s in ("all", "none", "cells", "rules") { s } else {
+      panic("nicematrix: `debug` must be `true`, `false`, `\"cells\"` or `\"rules\"`, got " + repr(debug))
+    }
+  }
+  let name = if name == none { none } else if type(name) == str { name } else { plain-text(name).trim() }
+  if to-bool(hvlines, name: "hvlines") {
+    if hlines == none { hlines = true }
+    if vlines == none { vlines = true }
+  }
+  let borders = if borders == auto { auto } else { to-bool(borders, name: "borders") }
   if type(dots) != dictionary { panic("nicematrix: `dots` must be a dictionary of options") }
   for k in dots.keys() {
     if k not in dots-defaults { panic("nicematrix: unknown `dots` option `" + k + "`") }
   }
-  let dots = dots-defaults + dots
+  let user-dots = dots
   let augment = if augment == none { from-mat.at("augment", default: none) } else { augment }
 
   context {
@@ -143,10 +183,27 @@
     let align = if align != auto { align } else { from-mat.at("align", default: math.mat.align) }
     let row-gap = _gap(row-gap, gap, from-mat, "row-gap")
     let column-gap = _gap(column-gap, gap, from-mat, "column-gap")
-    if small and row-gap == math.mat.row-gap { row-gap = _scale(row-gap, 0.7) }
-    if small and column-gap == math.mat.column-gap { column-gap = _scale(column-gap, 0.7) }
+    // `small: auto`: script-size cells in inline equations (under
+    // `nicemat-setup`), exactly like `mat` there; `small: true` is the
+    // `small` of nicematrix, which also tightens the gaps.
+    // The math style: that of the equation (level 0 in display equations,
+    // 1 in inline ones under `nicemat-setup`, more when nested), or forced.
+    let level = math-level()
+    let (st, scale-gaps) = if small-opt == auto { (math-style(level), false) } else if small-opt {
+      ((matrix: 1, cells: 2, flag: level >= 1), true)
+    } else { (math-style(0), false) }
+    let small = st.cells >= 2
+    if scale-gaps and row-gap == math.mat.row-gap { row-gap = _scale(row-gap, 0.7) }
+    if scale-gaps and column-gap == math.mat.column-gap { column-gap = _scale(column-gap, 0.7) }
+    // Smaller dots in small cells, unless given.
+    let dots = dots-defaults + user-dots
+    if small {
+      for k in ("radius", "spacing", "shorten") {
+        if k not in user-dots { dots.insert(k, dots-defaults.at(k) * 0.7) }
+      }
+    }
 
-    let mets = math-metrics(small: small)
+    let mets = math-metrics(style: st)
     let default-stroke = merge-stroke((paint: text.fill, thickness: 0.05em.to-absolute(), cap: "square"), stroke)
     let grid = parse-body(rows-of(pos), auto-dots: to-bool(dots.symbols, name: "dots.symbols"))
     let (R, C) = (grid.nrows, grid.ncols)
@@ -158,11 +215,34 @@
       panic("nicematrix: the exterior rows/columns leave no room for the matrix itself")
     }
 
-    // Transform cell contents (code-for-first-row, RowStyle, …).
+    // Cells written on several lines with `\`.
+    grid.cells = grid.cells.map(c => {
+      let ls = if c.kind == "cell" { _split-lines(c.body) } else { none }
+      if ls == none { c } else { c + (lines: ls) }
+    })
+    // Transform cell contents (code-for-first-row, RowStyle, …), line by line.
     if map-cells != none {
-      grid.cells = grid.cells.map(c => if c.kind == "cell" { c + (body: map-cells(c.i, c.j, c.body)) } else { c })
+      grid.cells = grid.cells.map(c => {
+        if c.kind != "cell" { c }
+        else if "lines" in c { c + (lines: c.lines.map(l => map-cells(c.i, c.j, l))) }
+        else { c + (body: map-cells(c.i, c.j, c.body)) }
+      })
     }
-    grid.cells = grid.cells.map(c => _measure-record(c, small, dots))
+
+    // --- Horizontal alignment of every cell.
+    let align-at(i, j) = {
+      if type(align) == function { h-align(align(i, j)) }
+      else if first-col and j == 0 { right }
+      else if last-col and j == C - 1 { left }
+      else if type(align) == array { h-align(pick(align, j)) }
+      else { h-align(align) }
+    }
+    let cell-align(c) = {
+      let al = c.opts.at("align", default: auto)
+      if al != auto { h-align(al) } else if c.colspan > 1 { center } else { align-at(c.i, c.j) }
+    }
+    let line-opts = (align: cell-align, gap: pick(row-gap, 0))
+    grid.cells = grid.cells.map(c => _measure-record(c, st, dots, line-opts))
 
     let (lpair, rpair) = delim-pair(delim)
     let has-delim = lpair != none or rpair != none
@@ -193,9 +273,9 @@
 
     let ly = layout-rows(grid, mets, (row-gap: row-gap, cell-space: cell-space, margin: margin, r0: r0, r1: r1))
     let H = ly.main.bottom - ly.main.top
-    let lglyph = if lpair != none { delim-glyph(lpair, H, side: left, fill: delim-fill) } else { none }
-    let rglyph = if rpair != none { delim-glyph(rpair, H, side: right, fill: delim-fill) } else { none }
-    let prep = prepare-submatrices(grid.decos, R, C, ly.rows)
+    let lglyph = if lpair != none { delim-glyph(lpair, H, side: left, fill: delim-fill, style: st) } else { none }
+    let rglyph = if rpair != none { delim-glyph(rpair, H, side: right, fill: delim-fill, style: st) } else { none }
+    let prep = prepare-submatrices(grid.decos, R, C, ly.rows, main: (r0, r1, c0, c1))
     // Vertical braces in columns: their width counts for the column.
     grid.cells = grid.cells.map(c => {
       if c.kind != "brace" or c.dir != "v" { return c }
@@ -233,22 +313,13 @@
     let cols = lx.cols
     let main = ly.main + lx.main
 
-    // --- Horizontal alignment of every cell.
-    let align-at(i, j) = {
-      if type(align) == function { h-align(align(i, j)) }
-      else if first-col and j == 0 { right }
-      else if last-col and j == C - 1 { left }
-      else if type(align) == array { h-align(pick(align, j)) }
-      else { h-align(align) }
-    }
-
     // --- Position of every record: slot, content box and baseline.
     grid.cells = grid.cells.map(c => {
       let (i, j) = (c.i, c.j)
       let (i2, j2) = (i + c.rowspan - 1, j + c.colspan - 1)
       let slot = (x0: cols.at(j).left, x1: cols.at(j2).right, y0: rows.at(i).top, y1: rows.at(i2).bottom)
       let al = c.opts.at("align", default: auto)
-      let ha = if al != auto { h-align(al) } else if c.colspan > 1 { center } else { align-at(i, j) }
+      let ha = cell-align(c)
       let va = if al != auto { v-align(al, fallback: none) } else { none }
       let x = slot.x0 + align-offset(ha, slot.x1 - slot.x0, c.m.w)
       let base = if c.rowspan == 1 and va == none { rows.at(i).base } else {
@@ -408,7 +479,8 @@
     let opt-lines(dir, spec, st) = {
       let (m0, m1) = if dir == "h" { (r0, r1) } else { (c0, c1) }
       let (t0, t1) = if dir == "h" { (c0, c1) } else { (r0, r1) }
-      line-indices(spec, m1 - m0, 0, m1 - m0, not has-delim).map(k => (dir: dir, k: m0 + k, start: t0, end: t1, stroke: st, marker: false))
+      let outer = if borders == auto { not has-delim } else { borders }
+      line-indices(spec, m1 - m0, 0, m1 - m0, outer).map(k => (dir: dir, k: m0 + k, start: t0, end: t1, stroke: st, marker: false))
     }
     specs += opt-lines("h", hlines, default-stroke)
     specs += opt-lines("v", vlines, default-stroke)
@@ -511,7 +583,7 @@
       let kind = d.nicematrix
       if kind == "pave" {
         for s in merge-segments(paths.at(path-index)) {
-          if s.hidden and not debug { continue }
+          if s.hidden and debug == "none" { continue }
           let st = if s.hidden { (paint: gray, thickness: 0.5pt, dash: "dotted") } else { s.stroke }
           if s.dir == "h" {
             let (x0, x1, y) = (rule-x(s.t0), rule-x(s.t1 + 1), rule-y(s.k))
@@ -542,7 +614,7 @@
           }
         }
       } else if kind == "span-brace" {
-        let r = deco-range(d, R, C)
+        let r = deco-range(d, R, C, main: (r0, r1, c0, c1))
         let fill = d.at("fill", default: auto)
         let shift = abs-len(d.at("shift", default: 0pt))
         let shorten = to-bool(d.at("shorten", default: false), name: "shorten")
@@ -576,7 +648,7 @@
           bounds += r.bounds
         }
       } else if kind == "region" {
-        let r = deco-range(d, R, C)
+        let r = deco-range(d, R, C, main: (r0, r1, c0, c1))
         let fit = d.at("fit", default: "cells")
         let rect = tile(r.i0, r.j0, r.i1, r.j1)
         if fit == "content" {
@@ -598,15 +670,23 @@
         if to-bool(d.at("above", default: false), name: "above") { layers.over.push(it) } else { layers.under.push(it) }
       } else if kind == "dotline" {
         let (a, b) = (to-coord(d.from, name: "from"), to-coord(d.to, name: "to"))
-        let ca = cell-at(norm-index(a.at(0), R), norm-index(a.at(1), C))
-        let cb = cell-at(norm-index(b.at(0), R), norm-index(b.at(1), C))
-        let (p0, p1) = dotline-points(ca, cb)
+        let (ia, ja) = (norm-index(a.at(0), R), norm-index(a.at(1), C))
+        let (ib, jb) = (norm-index(b.at(0), R), norm-index(b.at(1), C))
+        for (i, j, which) in ((ia, ja, "from"), (ib, jb, "to")) {
+          if i < 0 or j < 0 or i >= R or j >= C {
+            panic("nicematrix: `" + which + "` " + repr((i, j)) + " is outside the " + str(R) + "×" + str(C) + " grid")
+          }
+        }
+        let (ca, cb) = (cell-at(ia, ja), cell-at(ib, jb))
         let opts = d
-        for k in ("nicematrix", "from", "to") { let _ = opts.remove(k) }
-        let st = leader-style(dots, opts)
+        for k in ("nicematrix", "from", "to", "connect", "bend") { let _ = opts.remove(k, default: none) }
+        if d.at("connect", default: false) { opts = connect-preset + opts }
+        let bend = to-angle(d.at("bend", default: 0deg), name: "bend")
+        let (p0, p1) = dotline-points(ca, cb, bend: bend)
+        let st = leader-style(dots, opts, at: (ia, ja))
         let s0 = if st.shorten-start == auto { st.shorten } else { st.shorten-start }
         let s1 = if st.shorten-end == auto { st.shorten } else { st.shorten-end }
-        let r = leader-items(p0, p1, st + (shorten-start: s0, shorten-end: s1))
+        let r = leader-items(p0, p1, st + (shorten-start: s0, shorten-end: s1, bend: bend))
         layers.over += r.items
         bounds += r.bounds
       }
@@ -656,9 +736,10 @@
     }
 
     let debug-items = ()
-    if debug {
-      let tiny(body) = box(fill: white.transparentize(20%), inset: 0.3pt,
-        text(size: 3.5pt, fill: blue.darken(20%), font: "DejaVu Sans Mono", top-edge: "bounds", bottom-edge: "bounds", body))
+    let tiny(body, size: 3.5pt, fill: blue.darken(20%)) = box(fill: white.transparentize(20%), inset: 0.3pt,
+      text(size: size, fill: fill, font: "DejaVu Sans Mono", top-edge: "bounds", bottom-edge: "bounds", body))
+    if debug in ("all", "cells") {
+      // Tiles, ink boxes and the coordinates of every cell.
       for i in range(R) {
         for j in range(C) {
           let c = cell-at(i, j)
@@ -670,8 +751,28 @@
             debug-items.push((x: c.box.x0, y: c.box.y0, body: rect(width: c.box.x1 - c.box.x0,
               height: c.box.y1 - c.box.y0, stroke: (paint: red.transparentize(50%), thickness: 0.2pt))))
           }
-          debug-items.push((x: t.x0, y: t.y0, body: tiny[#i,#j]))
+          debug-items.push((x: t.x0, y: t.y0, body: tiny(size: 3pt, fill: gray.darken(30%))[#i,#j]))
         }
+      }
+    }
+    if debug in ("all", "rules") {
+      // The numbers of the rules, as `hlines`, `vlines`, `augment` and
+      // `pave` count them (within the main block): horizontal ones on the
+      // left of the matrix, vertical ones above it.
+      let line-st = (paint: blue.transparentize(55%), thickness: 0.3pt, dash: "densely-dotted")
+      for k in range(nR + 1) {
+        let y = rule-y(k)
+        debug-items.push((x: main.left, y: y, body: line(length: main.right - main.left, stroke: line-st)))
+        let b = tiny[#k]
+        let m = measure(b)
+        debug-items.push((x: X0 - m.width - 1pt, y: y - m.height / 2, body: b))
+      }
+      for k in range(nC + 1) {
+        let x = rule-x(k)
+        debug-items.push((x: x, y: main.top, body: line(angle: 90deg, length: main.bottom - main.top, stroke: line-st)))
+        let b = tiny[#k]
+        let m = measure(b)
+        debug-items.push((x: x - m.width / 2, y: Y0 - m.height - 1pt, body: b))
       }
     }
 
@@ -681,6 +782,9 @@
         for it in layer { place(top + left, dx: it.x - X0, dy: it.y - Y0, it.body) }
       }
       if group-meta != none [#group-meta <nicematrix-group>]
+      // Named matrices publish their geometry at their top-left corner, for
+      // `nicemat-cell` and `nicemat-connect`.
+      if name != none { place(top + left, [#metadata((nicematrix-anchor: name, geometry: geometry)) <nicematrix-anchor>]) }
     })
   }
 }

@@ -52,6 +52,19 @@
   panic("nicematrix: expected a boolean for `" + name + "` (write `#true` in math mode), got " + repr(v))
 }
 
+/// Coerces an angle; plain numbers (also math content such as `30` or
+/// `−30`) are degrees.
+#let to-angle(v, name: "value") = {
+  let t = type(v)
+  if t == angle { return v }
+  if t == int or t == float { return v * 1deg }
+  let s = _clean-number(plain-text(v)).replace("deg", "").replace("°", "")
+  if s.match(regex("^-?\d+(\.\d+)?$")) == none {
+    panic("nicematrix: expected an angle for `" + name + "` (such as `30` or `#30deg`), got " + repr(v))
+  }
+  float(s) * 1deg
+}
+
 /// Coerces an integer or a list of integers: an array, or math content such
 /// as `(1, −1)` or `2`.
 #let to-int-list(v, name: "value") = {

@@ -51,3 +51,54 @@
 ]
 
 $ A = nicemat(1, 2; 3, 4) quad B = mat(1, 2; 3, 4) quad C = nicemat(frac(1, 2), x; y^2, z) $
+
+// Under `nicemat-setup`, inline matrices follow `mat` in inline equations
+// (script-size cells), and display ones are unchanged.
+#[
+  #show: nicemat-setup
+  #let check-inline(name, a, b) = context {
+    let (ma, mb) = (ink(math.equation(a)), ink(math.equation(b)))
+    let ok = calc.abs(ma.w - mb.w) < tol and calc.abs(ma.a - mb.a) < tol and calc.abs(ma.d - mb.d) < tol
+    assert(ok, message: name + ": inline mat " + repr(ma) + " vs nicemat " + repr(mb))
+    [#name: #a vs #b ✓ \ ]
+  }
+  #check-inline("inline 2x2", $mat(1, 2; 3, 4)$, $nicemat(1, 2; 3, 4)$)
+  #check-inline("inline fractions", $mat(frac(1, 2), x; y^2, z)$, $nicemat(frac(1, 2), x; y^2, z)$)
+  #check-inline("inline brackets", $mat(delim: "[", a, b, c; d, e, f)$, $nicemat(delim: "[", a, b, c; d, e, f)$)
+  #check-inline("inline dots kept", $mat(1, dots.c, 1; dots.v, dots.down, dots.v; 1, dots.c, 1)$, $nicemat(dots: #(symbols: false), 1, dots.c, 1; dots.v, dots.down, dots.v; 1, dots.c, 1)$)
+  #check-inline("inline nested", $mat(mat(1, 2; 3, 4), 0; 0, 1)$, $nicemat(nicemat(1, 2; 3, 4), 0; 0, 1)$)
+  #check("forced display", $mat(1, 2; 3, 4)$, $nicemat(1, 2; 3, 4, small: #false)$)
+
+  // In display equations, the geometry is read from the real layout.
+  #let report(name) = g => [#metadata((name: name, w: g.width, a: g.baseline, d: g.height - g.baseline)) <compat-display>]
+  $ nicemat(foreground: #report("display under setup"), 1, 2; 3, 4) quad
+    nicemat(foreground: #report("display nested"), nicemat(1, 2; 3, 4), 0; 0, 1) $
+  #context {
+    let expected = (
+      "display under setup": ink(math.equation(math.display($mat(1, 2; 3, 4)$))),
+      "display nested": ink(math.equation(math.display($mat(mat(1, 2; 3, 4), 0; 0, 1)$))),
+    )
+    let found = query(<compat-display>).map(m => m.value)
+    assert.eq(found.len(), 2)
+    for f in found {
+      let e = expected.at(f.name)
+      let ok = calc.abs(e.w - f.w) < tol and calc.abs(e.a - f.a) < tol and calc.abs(e.d - f.d) < tol
+      assert(ok, message: f.name + ": mat " + repr(e) + " vs nicemat " + repr(f))
+      [#f.name ✓ \ ]
+    }
+  }
+]
+
+// With `mat: true`, every `mat` is drawn by `nicemat`, inline ones included.
+#[
+  #let before = state("before-inline")
+  #context before.update(ink(math.equation($mat(1, 2; 3, frac(4, 5))$)))
+  #show: nicemat-setup.with(mat: true)
+  #context {
+    let after = ink(math.equation($mat(1, 2; 3, frac(4, 5))$))
+    let b = before.get()
+    assert(calc.abs(b.w - after.w) < tol and calc.abs(b.a - after.a) < tol and calc.abs(b.d - after.d) < tol,
+      message: "inline show rule: " + repr(b) + " vs " + repr(after))
+    [inline show rule: $mat(1, 2; 3, frac(4, 5))$ ✓]
+  }
+]

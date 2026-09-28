@@ -18,11 +18,14 @@ $ A = nicemat(delim: "[",
 ```
 
 Plain matrices come out **exactly** like `mat` (same size, same delimiters,
-same cramped cells). You can switch a whole document over with a show rule:
+same cramped cells). Add one show rule at the top of the document so that
+matrices in inline equations (and nested ones) get the smaller cells of an
+inline `mat`; `mat: true` also switches every `mat` over:
 
 ```typ
-#show math.mat: nicemat      // every `mat` gets leaders, same geometry
-$ mat(1, dots.c, 1; dots.v, dots.down, dots.v; 1, dots.c, 1) $
+#show: nicemat-setup                  // inline matrices sized like `mat`
+#show: nicemat-setup.with(mat: true)  // … and every `mat` gets leaders
+Inline: $mat(1, dots.c, 1; dots.v, dots.down, dots.v; 1, dots.c, 1)$.
 ```
 
 The tabular half of nicematrix (`{NiceTabular}`, notes, captions, X/V/S
@@ -38,7 +41,8 @@ Import the package from Typst Universe; everything you need is exported:
 
 The functions keep short names that work in math: `nicemat`, `nicearray`, the
 leaders `cdots`, `vdots`…, and the markers `cell`, `hline`, `submatrix`,
-`pave`… (see the reference below).
+`connect`, `pave`… (see the reference below). Outside a `nicemat`, the
+markers fall back to their plain look (dots, the body of a `cell`…).
 
 ## A tour
 
@@ -86,7 +90,8 @@ $ nicemat(delim: "[",
 ```
 
 For options, use the functions `ldots`, `cdots`, `vdots`, `ddots` and
-`iddots`:
+`iddots` (or `dots: (..)` for all the leaders; there, `fill` can be a function
+`(i, j) => color` of the cell where a leader starts):
 
 ```typ
 $ nicemat(1, 2, 3, 4, 5;
@@ -103,15 +108,20 @@ $ nicemat(delim: "[",
 
 `cell(body, rowspan:, colspan:)` works like `table.cell`. The positions it
 covers are skipped automatically, so you don't write placeholders for them.
-Rules are drawn in the middle of the gaps, like `mat`'s `augment`. They
-never cross blocks, leaders, empty corners or the exterior rows.
+`\` breaks a cell or a block into lines. Rules are drawn in the middle of the
+gaps, like `mat`'s `augment`. They never cross blocks, leaders, empty corners
+or the exterior rows. `hvlines: #true` gives all of them, `borders: #false`
+leaves out the outer ones.
 
 ```typ
-$ nicemat(delim: "[", hlines: #true, vlines: #true, margin: #0.2em,
+$ nicemat(delim: "[", hvlines: #true, margin: #0.2em,
   cell(#text(1.5em)[$A$], rowspan: #3, colspan: #3), 0;
   dots.v;
   0;
   0, dots.c, 0, 0) $
+
+$ nicearray(hvlines: #true, borders: #false,
+  cell(x + y \ = z, rowspan: #2), a; b; 1, 2) $
 
 $ nicearray(corners: #(top + right), hlines: #true, vlines: #true,
   1; 1, 1; 1, 2, 1; 1, 3, 3, 1; 1, 4, 6, 4, 1) $
@@ -131,12 +141,16 @@ $ nicemat(1, 2, 3;
 
 Backgrounds use `fill`, like `table`: a color, an array cycled over the
 columns, or a function `(i, j) => color`. Use `cell(.., fill:)` for a block
-and `region(from, to, ..)` for any rectangle of cells.
+and `region(from, to, ..)` for any rectangle of cells, or `region(row: 1)`,
+`region(cols: (0, 2))` for whole rows and columns.
 
 ```typ
 $ nicemat(margin: #0.25em,
   fill: #((i, j) => if calc.even(i + j) { red.lighten(85%) } else { blue.lighten(85%) }),
   1, 2, 3; 4, 5, 6; 7, 8, 9) $
+
+$ nicemat(1, 2, 3; 4, 5, 6; 7, 8, 9,
+  region(row: 1, fill: #yellow.lighten(50%))) $
 ```
 
 ### Exterior rows and columns, braces
@@ -156,10 +170,11 @@ $ nicearray(first-row: #true, last-row: #true, first-col: #true, last-col: #true
   , hbrace(p, span: #3), hbrace(q, span: #2)) $
 ```
 
-### Sub-matrices, braces over cells, free leaders
+### Sub-matrices, braces over cells, free leaders and arrows
 
-These decorations take two corners `(row, col)` and can be written anywhere
-among the arguments:
+These decorations take two corners `(row, col)` (or whole rows and columns:
+`rows: (a, b)`, `cols: (a, b)`) and can be written anywhere among the
+arguments:
 
 ```typ
 $ nicearray(1, 1, 1, x; frac(1, 4), frac(1, 2), frac(1, 4), y; 1, 2, 3, z,
@@ -174,8 +189,17 @@ $ nicemat(1, 2, 3, 4, 5, 6; 11, 12, 13, 14, 15, 16,
   hbrace((0, 0), (1, 5), "all", side: #bottom), // like \UnderBrace
   vbrace((0, 0), (1, 5), 2 "rows")) $
 
+$ nicemat(1, 2, 3; 4, 5, 6,
+  hbrace(n, cols: (0, 1)),             // whole columns
+  vbrace(m, rows: (0, 1))) $
+
 $ nicemat(I, 0, dots.c, 0; 0, I, dots.down, dots.v; dots.v, dots.down, I, 0; 0, dots.c, 0, I,
   dotline((1, 1), (2, 2))) $            // like \line in \CodeAfter
+
+$ nicearray(column-gap: #3em, row-gap: #2em,
+  A, B; C, D,
+  connect((0, 0), (0, 1), above: f),   // an arrow
+  connect((0, 0), (1, 1), bend: -25)) $ // bent, like TikZ's `bend left`
 ```
 
 ### Stacks of matrices
@@ -200,7 +224,16 @@ $ nicemat(foreground: #(g => {
   1, 0, 0; 0, 1, 0; 0, 0, 1) $
 ```
 
-`debug: #true` shows the index and tile of every cell.
+Give matrices a `name` to draw between them (TikZ's `remember picture`):
+
+```typ
+$ A = nicemat(name: "A", 1, 2; 3, 4) quad B = nicemat(name: "B", a, b; c, d) $
+#nicemat-connect(("A", (0, 1)), ("B", (0, 0)), bend: 30deg)
+```
+
+`nicemat-cell(name, (i, j))` gives the position of a cell on the page (in a
+`context`). `debug: #true` shows the index and tile of every cell and the
+numbers of the rules (`"cells"` or `"rules"` for one of them).
 
 ## Conventions
 
@@ -220,6 +253,9 @@ $ nicemat(foreground: #(g => {
   lines, plus the borders when there are no delimiters.
 - **Spans** skip the covered positions, as in `table`: don't write empty
   placeholders under a spanning `cell`, `cdots(span:)` or brace.
+- **Rectangles** (`region`, `submatrix`, braces): two corners, or `row:`,
+  `rows: (a, b)`, `col:`, `cols: (a, b)`; the other direction is then the
+  whole matrix inside the delimiters.
 - **Defaults for a document:** `#let nicemat = nicemat.with(..)` or
   `#show math.mat: nicemat.with(..)`. `set math.mat(delim:, align:, gap:,
   row-gap:, column-gap:)` is honoured too.
@@ -235,7 +271,9 @@ $ nicemat(foreground: #(g => {
 | `align` | from `mat` | alignment, array (one per column) or `(i, j) => alignment` (`l`/`c`/`r`, `columns-type`) |
 | `gap`, `row-gap`, `column-gap` | from `mat` | a length, or an array with one value per gap, like `grid` gutters (`\\[..]`, `@{..}`) |
 | `augment` | `none` | as in `mat` |
-| `hlines`, `vlines` | `none` | `true`, an index or an array of indices (`hlines`, `vlines`, `hvlines`) |
+| `hlines`, `vlines` | `none` | `true`, an index or an array of indices (`hlines`, `vlines`) |
+| `hvlines` | `false` | `true`: both `hlines` and `vlines` (`hvlines`) |
+| `borders` | `auto` | outer rules of `hlines`/`vlines: true`: `auto` (only without delimiters), `true`, `false` (`hvlines-except-borders`) |
 | `stroke` | `0.05em` | stroke of the rules (`rules/color`, `rules/width`) |
 | `fill` | `none` | color, array (cycled over columns) or `(i, j) => color` (`\rowcolor`, `\rowcolors`, `\chessboardcolors`, …) |
 | `corners` | `none` | `true` (the four corners) or alignments: `top + left`, …, `top`, `right`, … (`corners`) |
@@ -245,15 +283,16 @@ $ nicemat(foreground: #(g => {
 | `margin` | `auto` | room inside the delimiters; length or dictionary (`margin`, `extra-margin`) |
 | `column-width` | `auto` | a minimum length, one per column (`(auto, 1cm)`, like `w{c}{1cm}`), or `"equal"` (`columns-width`) |
 | `baseline` | `horizon` | `top`, `horizon`, `bottom`, a row index, or `(line: k)` to put a rule on the axis (`baseline`) |
-| `small` | `false` | script-style cells (`small`) |
+| `small` | `auto` | `auto`: like `mat` (smaller in inline equations under `nicemat-setup`, and when nested); `true`: script cells, tighter gaps and dots (`small`); `false`: display cells |
 | `dots` | `(:)` | options of the leaders, see below (`xdots/..`) |
 | `background`, `foreground` | `none` | content or `(geometry) => content` |
-| `debug` | `false` | show indices and tiles (`\ShowCellNames`) |
+| `name` | `none` | name for `nicemat-cell` / `nicemat-connect` (`name`) |
+| `debug` | `false` | `true`, `"cells"` or `"rules"`: indices and tiles, rule numbers (`\ShowCellNames`) |
 
 ### Leaders: `ldots`, `cdots`, `vdots`, `ddots`, `iddots`
 
 The same keys are accepted in `nicemat(dots: (..))` for every leader, and by
-`dotline`.
+`dotline` and `connect`.
 
 | option | default | meaning |
 |---|---|---|
@@ -261,10 +300,11 @@ The same keys are accepted in `nicemat(dots: (..))` for every leader, and by
 | `span` (leader only) | `1` | cover several columns (`ldots`, `cdots`) or rows (`vdots`), like `\Hdotsfor` / `\Vdotsfor` (even `span: 1`) |
 | `above`, `below`, `middle` (leader only) | `none` | labels (`^`, `_`, `:`) |
 | `horizontal-labels` | `false` | keep the labels horizontal |
-| `fill` | text color | color of the dots |
+| `fill` | text color | color of the dots, or `(i, j) => color` of the cell where the leader starts (`none`: text color) |
 | `stroke` | `auto` | `auto`: round dots; a stroke: a line (`line-style`) |
-| `radius`, `spacing` | `0.53pt`, `0.45em` | dot size and distance (`radius`, `inter`) |
-| `shorten`, `shorten-start`, `shorten-end` | `0.3em` | gap at the closed ends |
+| `radius`, `spacing` | `0.53pt`, `0.45em` | dot size and distance (`radius`, `inter`); 70% in small cells |
+| `shorten`, `shorten-start`, `shorten-end` | `0.3em` | gap at the closed ends; 70% in small cells |
+| `bend` (`dotline`, `connect`) | `0` | an angle or a number of degrees: a curve bent left (right when negative), like TikZ's `bend left` |
 | `nullify` | `false` | leaders take no room (`nullify`) |
 | `parallel` (in `dots` only) | `true` | draw diagonals parallel to the first (`parallelize-diags`) |
 | `first` (leader only) | `false` | reference diagonal for the parallel ones (`draw-first`) |
@@ -279,12 +319,22 @@ The same keys are accepted in `nicemat(dots: (..))` for every leader, and by
 | `diagbox(lower, upper)` | a cell slashed diagonally (`\diagbox`); also as the body of a spanning `cell`; `stroke` |
 | `hline()` / `vline()` | `start`, `end` (end excluded), `stroke`, `y` / `x` |
 | `hbrace(label, span:)` / `vbrace(label, span:)` | in exterior rows/columns: `fill`, `shift` |
-| `hbrace(from, to, label)` / `vbrace(from, to, label)` | `side` (`top`/`bottom`, `right`/`left`), `shorten`, `shift`, `fill` |
-| `submatrix(from, to)` | `delim`, `sup`, `sub`, `hlines`, `vlines` (relative to the sub-matrix), `stroke`, `slim`, `xshift`, `left-xshift`, `right-xshift`, `extra-height`, `fill`, `reserve`, `bound` |
-| `region(from, to)` | `fill`, `stroke` (one per side allowed), `radius`, `outset`, `fit` (`"cells"`/`"content"`), `above` |
-| `dotline(from, to)` | leader options |
+| `hbrace(from, to, label)` / `vbrace(from, to, label)` | `side` (`top`/`bottom`, `right`/`left`), `shorten`, `shift`, `fill`; also `hbrace(label, cols: (a, b))`, `vbrace(label, rows: (a, b))` |
+| `submatrix(from, to)` | or `row:`/`rows:`/`col:`/`cols:`; `delim`, `sup`, `sub`, `hlines`, `vlines` (relative to the sub-matrix), `stroke`, `slim`, `xshift`, `left-xshift`, `right-xshift`, `extra-height`, `fill`, `reserve`, `bound` |
+| `region(from, to)` | or `row:`/`rows:`/`col:`/`cols:`; `fill`, `stroke` (one per side allowed), `radius`, `outset`, `fit` (`"cells"`/`"content"`), `above` |
+| `dotline(from, to)` | leader options, `bend` |
+| `connect(from, to)` | an arrow: a `dotline` with a solid line and `marks: "->"` |
 | `pave(path)` | a path along the grid lines (pavemat): `from` (grid point `(i, j)` counted within the matrix, or a corner `top + right`), `stroke`, `chars` (other letters than `WASD`) |
 | `flood(from)` | fills the cells connected to `from` without crossing a path: `fill` |
+
+### Functions
+
+| function | use |
+|---|---|
+| `#show: nicemat-setup` | inline and nested matrices sized like `mat`; `.with(mat: true)` also draws every `mat` with `nicemat` |
+| `nicemat-group[..]` | the matrices inside share their column widths (`{NiceMatrixBlock}`) |
+| `nicemat-cell(name, (i, j))` | in a `context`: `none` or the cell of a named matrix on the page (`page`, `x`, `y`, `width`, `height`, `ink`, `baseline`) |
+| `nicemat-connect((name, (i, j)), (name, (i, j)))` | a line between cells of named matrices on one page; options of `connect` |
 
 ### Geometry (for `background` / `foreground`)
 
@@ -297,8 +347,9 @@ The same keys are accepted in `nicemat(dots: (..))` for every leader, and by
 ## Differences with nicematrix and pavemat
 
 - Cells are set in text style, as in LaTeX and in `mat` inside a display
-  equation. Typst gives no way to detect an inline equation, so pass
-  `small: #true` there if you want script-size cells like inline `mat`.
+  equation. Typst gives no way to detect an inline equation without a show
+  rule: add `#show: nicemat-setup` to get script-size cells in inline
+  equations and nested matrices, like `mat`.
 - Nothing needs a second compilation. Everything is measured in one layout
   pass, except `nicemat-group`, which converges in two iterations
   automatically.

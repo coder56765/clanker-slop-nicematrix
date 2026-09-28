@@ -7,11 +7,38 @@
 #import "draw.typ": label-box, leader-items
 #import "leaders.typ": leader-style, dotline-points
 
-/// Reads the corners of a decoration and orders them.
-#let deco-range(d, R, C) = {
-  let (i0, j0) = to-coord(d.from, name: "from")
-  let (i1, j1) = to-coord(d.to, name: "to")
-  let shown = "(" + str(i0) + ", " + str(j0) + ") to (" + str(i1) + ", " + str(j1) + ")"
+/// Rows (or columns) given by `row: k` or `rows: (first, last)`, else
+/// `(lo, hi)`.
+#let _span(d, one, many, lo, hi) = {
+  if one in d {
+    let k = to-int(d.at(one), name: one)
+    return (k, k)
+  }
+  if many in d {
+    let l = to-int-list(d.at(many), name: many)
+    if l.len() == 1 { return (l.at(0), l.at(0)) }
+    if l.len() != 2 { panic("nicematrix: `" + many + "` needs `(first, last)`, got " + repr(d.at(many))) }
+    return (l.at(0), l.at(1))
+  }
+  (lo, hi)
+}
+
+/// Reads the rectangle of a decoration and orders it: two corners `from`
+/// and `to`, or `row` / `rows` / `col` / `cols` (the other direction being
+/// the main block `main = (r0, r1, c0, c1)`, whole grid by default).
+#let deco-range(d, R, C, main: none) = {
+  let (r0, r1, c0, c1) = if main == none { (0, R, 0, C) } else { main }
+  let (i0, j0, i1, j1) = (none, none, none, none)
+  let shown = none
+  if d.at("from", default: none) != none {
+    (i0, j0) = to-coord(d.from, name: "from")
+    (i1, j1) = to-coord(d.to, name: "to")
+    shown = "(" + str(i0) + ", " + str(j0) + ") to (" + str(i1) + ", " + str(j1) + ")"
+  } else {
+    (i0, i1) = _span(d, "row", "rows", r0, r1 - 1)
+    (j0, j1) = _span(d, "col", "cols", c0, c1 - 1)
+    shown = "rows " + str(i0) + "–" + str(i1) + ", columns " + str(j0) + "–" + str(j1)
+  }
   let (i0, i1) = (norm-index(i0, R), norm-index(i1, R))
   let (j0, j1) = (norm-index(j0, C), norm-index(j1, C))
   let (i0, i1) = (calc.min(i0, i1), calc.max(i0, i1))
@@ -28,12 +55,12 @@
 
 /// Prepares the sub-matrices once the rows are laid out: their delimiters
 /// (whose width depends only on their height) and the room they need.
-#let prepare-submatrices(decos, R, C, rows) = {
+#let prepare-submatrices(decos, R, C, rows, main: none) = {
   let subs = ()
   let need-left = (:)
   let need-right = (:)
   for d in decos.filter(d => d.nicematrix == "submatrix") {
-    let r = deco-range(d, R, C)
+    let r = deco-range(d, R, C, main: main)
     let extra = abs-len(d.at("extra-height", default: 0pt))
     let (top, bottom) = (rows.at(r.i0).top - extra / 2, rows.at(r.i1).bottom + extra / 2)
     let (lp, rp) = delim-pair(d.at("delim", default: "("))

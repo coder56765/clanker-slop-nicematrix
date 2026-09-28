@@ -1,18 +1,31 @@
 /// Markers are the small "commands" users put among the cells of a
 /// `nicemat`: leaders, spanning cells, rules, braces and decorations.
 ///
-/// Each marker is an invisible `metadata` element carrying a dictionary with a
-/// `nicematrix` key naming its kind. Being content, a marker survives inside
-/// the cells of a regular `mat` (so `show math.mat: nicemat` sees it), and it
-/// renders as nothing if used anywhere else.
+/// Each marker is a `metadata` element carrying a dictionary with a
+/// `nicematrix` key naming its kind, followed by a fallback: what the marker
+/// shows outside a `nicemat` (the dots of a leader, the body of a cell, …).
+/// Being content, a marker survives inside the cells of a regular `mat` (so
+/// `show math.mat: nicemat` sees it).
 
 #import "util.typ": plain-text
 
-#let _marker(kind, ..fields) = {
+#let _marker(kind, fallback: none, ..fields) = {
   if fields.pos().len() > 0 {
     panic("nicematrix: `" + kind + "` takes named arguments only, got " + repr(fields.pos()))
   }
-  metadata((nicematrix: kind, ..fields.named()))
+  let m = metadata((nicematrix: kind, ..fields.named()))
+  if fallback == none { m } else { [#m#fallback] }
+}
+
+/// Markers covering a rectangle of cells: two corners `from, to`, or whole
+/// rows and columns with `row:` / `rows: (first, last)` / `col:` /
+/// `cols: (first, last)` (the other direction defaults to the main block).
+#let _ranged(kind, args) = {
+  let pos = args.pos()
+  if pos.len() == 2 { return _marker(kind, from: pos.at(0), to: pos.at(1), ..args.named()) }
+  if pos.len() == 0 { return _marker(kind, ..args.named()) }
+  panic("nicematrix: `" + kind + "` takes two corners `from, to`, or `row:`, `rows:`, `col:`, `cols:`; got "
+    + str(pos.len()) + " positional arguments")
 }
 
 // --- Dotted leaders ---------------------------------------------------------
@@ -23,20 +36,20 @@
 /// `above`, `below`, `middle` (labels), `fill`, `stroke`, `radius`,
 /// `spacing`, `shorten`, `shorten-start`, `shorten-end`, `nullify`,
 /// `horizontal-labels`, `marks`.
-#let ldots(..args) = _marker("leader", dir: "l", ..args)
+#let ldots(..args) = _marker("leader", dir: "l", fallback: sym.dots.h, ..args)
 
 /// Horizontal leader on the math axis (like `\Cdots`).
-#let cdots(..args) = _marker("leader", dir: "c", ..args)
+#let cdots(..args) = _marker("leader", dir: "c", fallback: sym.dots.c, ..args)
 
 /// Vertical leader (like `\Vdots`; with `span`, like `\Vdotsfor`).
-#let vdots(..args) = _marker("leader", dir: "v", ..args)
+#let vdots(..args) = _marker("leader", dir: "v", fallback: sym.dots.v, ..args)
 
 /// Diagonal leader going down to the right (like `\Ddots`).
 /// `first: #true` makes this the reference for the parallel diagonals.
-#let ddots(..args) = _marker("leader", dir: "d", ..args)
+#let ddots(..args) = _marker("leader", dir: "d", fallback: sym.dots.down, ..args)
 
 /// Diagonal leader going up to the right (like `\Iddots`).
-#let iddots(..args) = _marker("leader", dir: "i", ..args)
+#let iddots(..args) = _marker("leader", dir: "i", fallback: sym.dots.up, ..args)
 
 // --- Cells and rules -------------------------------------------------------
 
@@ -47,7 +60,7 @@
 /// Options: `rowspan`, `colspan`, `fill`, `stroke`, `radius`, `outset`,
 /// `align`, `transparent` (let rules cross the block), `empty` (force the
 /// cell to count as empty or not, like `\NotEmpty`).
-#let cell(body, ..args) = _marker("cell", body: body, ..args)
+#let cell(body, ..args) = _marker("cell", fallback: body, body: body, ..args)
 
 /// A horizontal rule. On its own row (`1, 2; hline(); 3, 4`) it separates the
 /// neighbouring rows; inside a row it is drawn below that row.
@@ -61,21 +74,24 @@
 /// A cell slashed diagonally, with `lower` in the bottom-left corner and
 /// `upper` in the top-right one (like `\diagbox`). It can also be the body of
 /// a spanning `cell`. Option: `stroke`.
-#let diagbox(lower, upper, ..args) = _marker("diagbox", lower: lower, upper: upper, ..args)
+#let diagbox(lower, upper, ..args) = _marker("diagbox", fallback: [#lower/#upper], lower: lower, upper: upper, ..args)
 
 // --- Braces ----------------------------------------------------------------
 
 #let _brace(kind, args) = {
   let pos = args.pos()
   let named = args.named()
-  if pos.len() == 1 {
-    metadata((nicematrix: "brace", dir: kind, label: pos.at(0), ..named))
+  let ranged = ("row", "rows", "col", "cols").any(k => k in named)
+  if ranged and pos.len() <= 1 {
+    _marker("span-brace", dir: kind, label: pos.at(0, default: none), ..named)
+  } else if pos.len() == 1 {
+    _marker("brace", fallback: pos.at(0), dir: kind, label: pos.at(0), ..named)
   } else if pos.len() == 3 {
-    metadata((nicematrix: "span-brace", dir: kind, from: pos.at(0), to: pos.at(1), label: pos.at(2), ..named))
+    _marker("span-brace", dir: kind, from: pos.at(0), to: pos.at(1), label: pos.at(2), ..named)
   } else if pos.len() == 0 {
-    metadata((nicematrix: "brace", dir: kind, label: none, ..named))
+    _marker("brace", dir: kind, label: none, ..named)
   } else {
-    panic("nicematrix: `" + kind + "brace` takes either a label (inside a row) or `from, to, label`")
+    panic("nicematrix: `" + kind + "brace` takes a label (inside a row), `from, to, label`, or a label with `rows:` / `cols:`")
   }
 }
 
@@ -86,6 +102,8 @@
 /// - `hbrace(from, to, label, side: top)` anywhere draws a brace above (or
 ///   below with `side: bottom`) the cells from `from` to `to` (like
 ///   `\OverBrace` / `\UnderBrace`).
+/// - `hbrace(label, cols: (first, last))` (or `col:`, `rows:`, `row:`) does
+///   the same for whole columns of the main block.
 ///
 /// Options: `fill`, `shorten`, `shift`.
 #let hbrace(..args) = _brace("h", args)
@@ -102,17 +120,28 @@
 /// `stroke`, `slim`, `xshift`, `left-xshift`, `right-xshift`,
 /// `extra-height`, `fill`, `reserve` (make room for the delimiters,
 /// default true), `bound` (stop leaders at the sub-matrix, default true).
-#let submatrix(from, to, ..args) = _marker("submatrix", from: from, to: to, ..args)
+///
+/// The rectangle is `from, to`, or whole rows and columns: `row: 1`,
+/// `rows: (0, 2)`, `col: 3`, `cols: (1, 2)`.
+#let submatrix(..args) = _ranged("submatrix", args)
 
 /// A background shape over a rectangle of cells (like `\rectanglecolor`, or
 /// the TikZ "highlight" recipe of nicematrix).
 /// Options: `fill`, `stroke`, `radius`, `outset`, `fit` (`"cells"` or
 /// `"content"`), `above` (draw over the cells instead of below).
-#let region(from, to, ..args) = _marker("region", from: from, to: to, ..args)
+/// The rectangle is `from, to`, or whole rows and columns as for `submatrix`.
+#let region(..args) = _ranged("region", args)
 
 /// A leader between two arbitrary cells (like `\line` in `\CodeAfter`).
-/// Takes the same options as the leaders.
+/// Takes the same options as the leaders, and `bend` (an angle, or a number
+/// of degrees): the line leaves and reaches the cells turned by that angle,
+/// like TikZ's `bend left` (negative values bend to the right).
 #let dotline(from, to, ..args) = _marker("dotline", from: from, to: to, ..args)
+
+/// An arrow between two cells: a `dotline` drawn as a solid line with an
+/// arrow head (`marks: "->"`). All options of `dotline` apply; `stroke: auto`
+/// gives dots again.
+#let connect(from, to, ..args) = _marker("dotline", from: from, to: to, connect: true, ..args)
 
 /// A path along the grid lines (as in pavemat): a string of directions `W`
 /// (up), `A` (left), `S` (down), `D` (right); lower-case letters move without
@@ -140,7 +169,13 @@
     return none
   }
   if v.has("children") {
-    let rest = v.children.filter(c => not _is-space(c))
+    let ch = v.children
+    // A marker with its fallback: `[#metadata(..)#fallback]`.
+    if ch.len() == 2 and type(ch.at(0)) == content and ch.at(0).func() == metadata {
+      let m = marker-of(ch.at(0))
+      if m != none { return m }
+    }
+    let rest = ch.filter(c => not _is-space(c))
     if rest.len() == 1 { return marker-of(rest.first()) }
   }
   none
