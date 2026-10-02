@@ -131,7 +131,7 @@
       #link("https://github.com/QuadnucYard/pavemat")[pavemat].
 
       #v(0.5em)
-      Version 0.1.0 — by ali —
+      Version 0.1.1 — by ali —
       #link("https://github.com/coder56765/clanker-slop-nicematrix")
     ]
   ]
@@ -169,7 +169,7 @@ covered: Typst's `table` already does most of it.
 The package is on Typst Universe as `clanker-slop-nicematrix`; import it with:
 
 ```typ
-#import "@preview/clanker-slop-nicematrix:0.1.0": *
+#import "@preview/clanker-slop-nicematrix:0.1.1": *
 ```
 
 Everything is exported under short names that work in math: `nicemat`,

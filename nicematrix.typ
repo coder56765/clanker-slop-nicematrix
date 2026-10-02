@@ -1,7 +1,7 @@
 // clanker-slop-nicematrix: the mathematical side of LaTeX's nicematrix for
 // Typst, with the paths and flood fills of pavemat, in a single file.
 //
-//   #import "@preview/clanker-slop-nicematrix:0.1.0": *
+//   #import "@preview/clanker-slop-nicematrix:0.1.1": *
 //   $ nicemat(1, dots.c, 1; dots.v, dots.down, dots.v; 1, dots.c, 1) $
 //
 // Public API (every other name starts with `_` and is internal):

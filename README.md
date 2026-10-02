@@ -9,13 +9,15 @@ matrix: `,` between cells, `;` between rows, and `dots.c` / `dots.v` /
 `dots.down` where the dots go.
 
 ```typ
-#import "@preview/clanker-slop-nicematrix:0.1.0": *
+#import "@preview/clanker-slop-nicematrix:0.1.1": *
 
 $ A = nicemat(delim: "[",
   a_11, dots.c, a_(1 n);
   dots.v, dots.down, dots.v;
   a_(m 1), dots.c, a_(m n)) $
 ```
+
+<img src="docs/readme-examples/01.png" width="155" alt="A general m by n matrix A in square brackets, with dotted leaders between its corner entries">
 
 Plain matrices come out **exactly** like `mat` (same size, same delimiters,
 same cramped cells). Add one show rule at the top of the document so that
@@ -28,6 +30,8 @@ inline `mat`; `mat: true` also switches every `mat` over:
 Inline: $mat(1, dots.c, 1; dots.v, dots.down, dots.v; 1, dots.c, 1)$.
 ```
 
+<img src="docs/readme-examples/02.png" width="134" alt="An inline 3 by 3 matrix with dotted leaders, as small as an inline mat">
+
 The tabular half of nicematrix (`{NiceTabular}`, notes, captions, X/V/S
 columns, trees) is out of scope: use `table` for that.
 
@@ -36,7 +40,7 @@ columns, trees) is out of scope: use `table` for that.
 Import the package from Typst Universe; everything you need is exported:
 
 ```typ
-#import "@preview/clanker-slop-nicematrix:0.1.0": *
+#import "@preview/clanker-slop-nicematrix:0.1.1": *
 ```
 
 The functions keep short names that work in math: `nicemat`, `nicearray`, the
@@ -45,17 +49,17 @@ leaders `cdots`, `vdots`…, and the markers `cell`, `hline`, `submatrix`,
 markers fall back to their plain look (dots, the body of a `cell`…).
 
 The whole library is a single file,
-[`nicematrix.typ`](https://github.com/coder56765/clanker-slop-nicematrix/blob/v0.1.0/nicematrix.typ),
+[`nicematrix.typ`](https://github.com/coder56765/clanker-slop-nicematrix/blob/v0.1.1/nicematrix.typ),
 without dependencies. You can also copy it into a project and write
 `#import "nicematrix.typ": *`. Its internal helpers all start with `_`, so
 `import *` only brings in the functions above.
 
 ## A tour
 
-The full documentation is [`documentation.pdf`](https://github.com/coder56765/clanker-slop-nicematrix/blob/v0.1.0/docs/documentation.pdf)
-(source: [`documentation.typ`](https://github.com/coder56765/clanker-slop-nicematrix/blob/v0.1.0/docs/documentation.typ)), in the
-repository of the package. It has four parts, and every example in it shows
-the code that produced the result:
+The full documentation is [`documentation.pdf`](docs/documentation.pdf?raw=true)
+(source: [`documentation.typ`](https://github.com/coder56765/clanker-slop-nicematrix/blob/v0.1.1/docs/documentation.typ),
+in the repository of the package). It has four parts, and every example in it
+shows the code that produced the result:
 
 1. **Getting started**: installation, a guided tour, and the conventions.
 2. **User guide**: one chapter per feature. It includes the examples of the
@@ -81,6 +85,8 @@ $ nicemat(1, 2, 3; 4, 5, 6; 7, 8, 9,
   flood((1, 1), fill: #red.transparentize(80%))) $
 ```
 
+<img src="docs/readme-examples/03.png" width="89" alt="A 3 by 3 matrix with a dashed path around its top-left 2 by 2 block, filled in light red">
+
 ### Dotted leaders
 
 In a `nicemat`, the symbols `dots.h` (or `...`), `dots.c`, `dots.v`,
@@ -94,6 +100,8 @@ $ nicemat(delim: "[",
   dots.v, , , dots.v;
   0, dots.c, dots.c, 0) $
 ```
+
+<img src="docs/readme-examples/04.png" width="97" alt="A matrix with zeros in its corners, joined by horizontal and vertical dotted leaders">
 
 For options, use the functions `ldots`, `cdots`, `vdots`, `ddots` and
 `iddots` (or `dots: (..)` for all the leaders; there, `fill` can be a function
@@ -109,6 +117,8 @@ $ nicemat(delim: "[",
   , ddots(above: n "times"), ;    // labels: above, below, middle
   0, , 1) $
 ```
+
+<img src="docs/readme-examples/05.png" width="112" alt="A leader spanning three columns, and a diagonal leader labeled n times">
 
 ### Blocks, rules, fills and corners
 
@@ -133,6 +143,8 @@ $ nicearray(corners: #(top + right), hlines: #true, vlines: #true,
   1; 1, 1; 1, 2, 1; 1, 3, 3, 1; 1, 4, 6, 4, 1) $
 ```
 
+<img src="docs/readme-examples/06.png" width="102" alt="A block A spanning three rows and columns with rules, a two-line block with inner rules only, and Pascal's triangle ruled with an empty top-right corner">
+
 Rules can also be written as markers among the cells, like `table.hline`:
 
 ```typ
@@ -144,6 +156,8 @@ $ nicemat(1, 2, 3;
   hline(); hline();                          // two markers: a double rule
   10, 11, 12) $
 ```
+
+<img src="docs/readme-examples/07.png" width="104" alt="A 4 by 3 matrix with a full rule, a vertical rule, a dashed partial rule and a double rule">
 
 Backgrounds use `fill`, like `table`: a color, an array cycled over the
 columns, or a function `(i, j) => color`. Use `cell(.., fill:)` for a block
@@ -158,6 +172,8 @@ $ nicemat(margin: #0.25em,
 $ nicemat(1, 2, 3; 4, 5, 6; 7, 8, 9,
   region(row: 1, fill: #yellow.lighten(50%))) $
 ```
+
+<img src="docs/readme-examples/08.png" width="89" alt="A checkerboard of light red and blue cells, and a matrix with its middle row highlighted in yellow">
 
 ### Exterior rows and columns, braces
 
@@ -175,6 +191,8 @@ $ nicearray(first-row: #true, last-row: #true, first-col: #true, last-col: #true
   1, 1, 134, 1, 1;
   , hbrace(p, span: #3), hbrace(q, span: #2)) $
 ```
+
+<img src="docs/readme-examples/09.png" width="197" alt="A ruled array with label rows and columns outside the delimiters and braces labeled p and q on all four sides">
 
 ### Sub-matrices, braces over cells, free leaders and arrows
 
@@ -208,6 +226,8 @@ $ nicearray(column-gap: #3em, row-gap: #2em,
   connect((0, 0), (1, 1), bend: -25)) $ // bent, like TikZ's `bend left`
 ```
 
+<img src="docs/readme-examples/10.png" width="228" alt="Sub-matrices with their own delimiters, braces over, under and beside cells, a dotted line between two cells, and arrows between cells">
+
 ### Stacks of matrices
 
 Matrices inside `nicemat-group[..]` share their column and delimiter
@@ -230,12 +250,16 @@ $ nicemat(foreground: #(g => {
   1, 0, 0; 0, 1, 0; 0, 0, 1) $
 ```
 
+<img src="docs/readme-examples/11.png" width="80" alt="An identity matrix with a red dashed line drawn across its diagonal">
+
 Give matrices a `name` to draw between them (TikZ's `remember picture`):
 
 ```typ
 $ A = nicemat(name: "A", 1, 2; 3, 4) quad B = nicemat(name: "B", a, b; c, d) $
 #nicemat-connect(("A", (0, 1)), ("B", (0, 0)), bend: 30deg)
 ```
+
+<img src="docs/readme-examples/12.png" width="197" alt="A bent arrow from the entry 2 of matrix A to the entry a of matrix B">
 
 `nicemat-cell(name, (i, j))` gives the position of a cell on the page (in a
 `context`). `debug: #true` shows the index and tile of every cell and the
@@ -382,6 +406,8 @@ tests assert the geometry against `mat`, the parsing and the leader
 extremities, and render `tests/out/*.png` for visual checks. Build the
 documentation from the root of the repository with
 `typst compile --root . docs/documentation.typ`.
+`docs/readme-examples/render.sh` renders the pictures of this README from its
+code blocks (it needs ImageMagick).
 
 ## License
 
@@ -393,7 +419,7 @@ QuadnucYard).
 
 The documentation, in the `docs` folder of the repository, is not part of the
 package, and one of its files is not covered by the MIT license:
-[`docs/nicematrix-latex.json`](https://github.com/coder56765/clanker-slop-nicematrix/blob/v0.1.0/docs/nicematrix-latex.json) holds the
+[`docs/nicematrix-latex.json`](https://github.com/coder56765/clanker-slop-nicematrix/blob/v0.1.1/docs/nicematrix-latex.json) holds the
 code examples of the manual of nicematrix (© François Pantigny), which the
 documentation prints next to their Typst ports. They are distributed under the
 [LaTeX Project Public License 1.3c](https://www.latex-project.org/lppl/lppl-1-3c/),

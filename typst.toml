@@ -1,6 +1,6 @@
 [package]
 name = "clanker-slop-nicematrix"
-version = "0.1.0"
+version = "0.1.1"
 entrypoint = "nicematrix.typ"
 authors = ["ali <https://github.com/coder56765>"]
 license = "MIT"
